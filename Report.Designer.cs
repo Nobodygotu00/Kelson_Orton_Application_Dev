@@ -58,7 +58,7 @@
             this.Report_Sched_Month_DGV.AllowUserToAddRows = false;
             this.Report_Sched_Month_DGV.AllowUserToDeleteRows = false;
             this.Report_Sched_Month_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Report_Sched_Month_DGV.Location = new System.Drawing.Point(12, 227);
+            this.Report_Sched_Month_DGV.Location = new System.Drawing.Point(12, 156);
             this.Report_Sched_Month_DGV.MultiSelect = false;
             this.Report_Sched_Month_DGV.Name = "Report_Sched_Month_DGV";
             this.Report_Sched_Month_DGV.ReadOnly = true;
@@ -70,11 +70,11 @@
             this.Report_Num_Cu_DGV.AllowUserToAddRows = false;
             this.Report_Num_Cu_DGV.AllowUserToDeleteRows = false;
             this.Report_Num_Cu_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Report_Num_Cu_DGV.Location = new System.Drawing.Point(12, 145);
+            this.Report_Num_Cu_DGV.Location = new System.Drawing.Point(335, 25);
             this.Report_Num_Cu_DGV.MultiSelect = false;
             this.Report_Num_Cu_DGV.Name = "Report_Num_Cu_DGV";
             this.Report_Num_Cu_DGV.ReadOnly = true;
-            this.Report_Num_Cu_DGV.Size = new System.Drawing.Size(338, 63);
+            this.Report_Num_Cu_DGV.Size = new System.Drawing.Size(338, 100);
             this.Report_Num_Cu_DGV.TabIndex = 2;
             // 
             // Report_Num_Types_Label
@@ -89,7 +89,7 @@
             // Report_Sched_Month_Label
             // 
             this.Report_Sched_Month_Label.AutoSize = true;
-            this.Report_Sched_Month_Label.Location = new System.Drawing.Point(9, 211);
+            this.Report_Sched_Month_Label.Location = new System.Drawing.Point(12, 140);
             this.Report_Sched_Month_Label.Name = "Report_Sched_Month_Label";
             this.Report_Sched_Month_Label.Size = new System.Drawing.Size(222, 13);
             this.Report_Sched_Month_Label.TabIndex = 4;
@@ -98,7 +98,7 @@
             // Report_Num_Cu_Label
             // 
             this.Report_Num_Cu_Label.AutoSize = true;
-            this.Report_Num_Cu_Label.Location = new System.Drawing.Point(12, 129);
+            this.Report_Num_Cu_Label.Location = new System.Drawing.Point(335, 9);
             this.Report_Num_Cu_Label.Name = "Report_Num_Cu_Label";
             this.Report_Num_Cu_Label.Size = new System.Drawing.Size(224, 13);
             this.Report_Num_Cu_Label.TabIndex = 5;
@@ -106,7 +106,7 @@
             // 
             // Return_Button
             // 
-            this.Return_Button.Location = new System.Drawing.Point(599, 25);
+            this.Return_Button.Location = new System.Drawing.Point(595, 346);
             this.Return_Button.Name = "Return_Button";
             this.Return_Button.Size = new System.Drawing.Size(75, 23);
             this.Return_Button.TabIndex = 7;
@@ -117,7 +117,7 @@
             // Return_Label
             // 
             this.Return_Label.AutoSize = true;
-            this.Return_Label.Location = new System.Drawing.Point(596, 9);
+            this.Return_Label.Location = new System.Drawing.Point(592, 330);
             this.Return_Label.Name = "Return_Label";
             this.Return_Label.Size = new System.Drawing.Size(81, 13);
             this.Return_Label.TabIndex = 9;
@@ -127,7 +127,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 399);
+            this.ClientSize = new System.Drawing.Size(689, 383);
             this.Controls.Add(this.Return_Label);
             this.Controls.Add(this.Return_Button);
             this.Controls.Add(this.Report_Num_Cu_Label);

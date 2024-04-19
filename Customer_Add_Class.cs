@@ -7,16 +7,14 @@ namespace Kelson_Orton_Application_Dev
     {
         public string CustomerName { get; set; }
         public string Address1 { get; set; }
-        public string Address2 { get; set; } // Make sure Address2 is assigned a default value if it's not provided
+        public string Address2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string PhoneNumber { get; set; }
 
-        // Constructor without parameters
         public Customer_Add_Class() { }
 
-        // Constructor with parameters for all properties
         public Customer_Add_Class(string customerName, string address1, 
             string address2, string city, string state, string zipCode, 
             string phoneNumber)
@@ -32,10 +30,9 @@ namespace Kelson_Orton_Application_Dev
 
         public void AddCustomer(Customer_Add_Class customer, string _connectionString)
         {
-            // Validate customer data
             if (string.IsNullOrWhiteSpace(customer.CustomerName) ||
                 string.IsNullOrWhiteSpace(customer.Address1) ||
-                string.IsNullOrWhiteSpace(customer.Address2) || // Including Address2 in the validation check
+                string.IsNullOrWhiteSpace(customer.Address2) || 
                 string.IsNullOrWhiteSpace(customer.City) ||
                 string.IsNullOrWhiteSpace(customer.State) ||
                 string.IsNullOrWhiteSpace(customer.ZipCode) ||
@@ -49,17 +46,14 @@ namespace Kelson_Orton_Application_Dev
                 throw new FormatException("Phone number must contain only digits and dashes.");
             }
 
-            // Database operation with exception handling
             try
             {
                 using (var connection = new MySqlConnection(_connectionString))
                 {
                     connection.Open();
 
-                    // Start transaction
                     using (var transaction = connection.BeginTransaction())
                     {
-                        // SQL statement to insert an address
                         var addressQuery = @"INSERT INTO address (address, address2, cityId, postalCode, phone) 
                                              VALUES (@Address1, @Address2, (SELECT cityId FROM city WHERE city = @City AND state = @State LIMIT 1), @PostalCode, @Phone); 
                                              SELECT LAST_INSERT_ID();";
@@ -74,12 +68,11 @@ namespace Kelson_Orton_Application_Dev
                             addressCommand.Parameters.AddWithValue("@PostalCode", customer.ZipCode);
                             addressCommand.Parameters.AddWithValue("@Phone", customer.PhoneNumber);
 
-                            // Execute the command and get the last inserted id for address
+
                             var addressId = Convert.ToInt32(addressCommand.ExecuteScalar());
 
                             if (addressId > 0)
                             {
-                                // SQL statement to insert a customer
                                 var customerQuery = @"INSERT INTO customer (customerName, addressId) 
                                                       VALUES (@CustomerName, @AddressId);";
 
@@ -91,7 +84,6 @@ namespace Kelson_Orton_Application_Dev
                                     customerCommand.ExecuteNonQuery();
                                 }
 
-                                // Commit transaction
                                 transaction.Commit();
                             }
                         }
@@ -100,12 +92,10 @@ namespace Kelson_Orton_Application_Dev
             }
             catch (MySqlException ex)
             {
-                // Handle exceptions related to MySQL operations
                 throw new Exception($"An error occurred while adding the customer: {ex.Message}", ex);
             }
             catch (Exception ex)
             {
-                // Handle other exceptions
                 throw new Exception($"An error occurred: {ex.Message}", ex);
             }
         }

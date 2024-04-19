@@ -99,11 +99,9 @@ namespace Kelson_Orton_Application_Dev
                         @"SELECT 
                 c.customerId AS `ID`, 
                 c.customerName AS `FullName`, 
-                a.address AS `Address1`, 
-                a.address2 AS `Address2`, 
+                a.address AS `Address1`,  
                 ci.city AS `City`,
-                co.country AS `Country`,
-                a.postalCode AS `ZipCode`, 
+                co.country AS `Country`, 
                 a.phone AS `PhoneNumber` 
                 FROM customer c 
                 JOIN address a ON c.addressId = a.addressId 

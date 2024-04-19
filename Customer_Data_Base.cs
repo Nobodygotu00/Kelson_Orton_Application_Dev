@@ -12,7 +12,6 @@ namespace Kelson_Orton_Application_Dev
             _connectionString = $"Server={host};Database={database};Uid={username};Pwd={password};";
         }
 
-        // This method assumes that 'address' table only requires address1, address2, city, state, and zipCode.
         public int InsertAddress(Customer_Add_Class customer)
         {
             int addressId = 0;
@@ -56,7 +55,7 @@ namespace Kelson_Orton_Application_Dev
                 try
                 {
                     connection.Open();
-                    var query = "SELECT userId FROM appointment WHERE customerId = @CustomerId LIMIT 1;"; // Adjust according to your database schema
+                    var query = "SELECT userId FROM appointment WHERE customerId = @CustomerId LIMIT 1;";
 
                     using (var command = new MySqlCommand(query, connection))
                     {
@@ -88,8 +87,7 @@ namespace Kelson_Orton_Application_Dev
                 try
                 {
                     connection.Open();
-                    var query = "DELETE FROM customer WHERE customerId = @CustomerId;"; // Adjust according to your database schema
-
+                    var query = "DELETE FROM customer WHERE customerId = @CustomerId;";
                     using (var command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@CustomerId", customerId);
@@ -149,7 +147,6 @@ namespace Kelson_Orton_Application_Dev
             }
         }
 
-        // This method inserts the customer using only the customerName and links the address via addressId.
         public void InsertCustomer(Customer_Add_Class customer, int addressId)
         {
             using (var connection = new MySqlConnection(_connectionString))
@@ -176,7 +173,5 @@ namespace Kelson_Orton_Application_Dev
             }
         }
 
-        // Add other methods as needed, such as DeleteCustomer, UpdateCustomer, etc.
-        // Make sure they align with the fields and requirements specified.
     }
 }

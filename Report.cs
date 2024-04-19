@@ -22,7 +22,6 @@ namespace Kelson_Orton_Application_Dev
 
         private void Return_Button_Click(object sender, EventArgs e)
         {
-            // Close the Report form
             this.Close();
         }
 
@@ -99,7 +98,7 @@ namespace Kelson_Orton_Application_Dev
             JOIN customer c ON a.customerId = c.customerId
             WHERE a.start >= @startOfMonth 
             AND a.start < @endOfMonth
-            ORDER BY a.start;";  // Removed the customer ID condition and added ORDER BY
+            ORDER BY a.start;";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@startOfMonth", startOfMonth);
@@ -155,7 +154,6 @@ namespace Kelson_Orton_Application_Dev
                 }
             }
 
-            // Optionally clear the selection if desired
             Report_Num_Cu_DGV.ClearSelection();
         }
 

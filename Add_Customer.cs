@@ -14,7 +14,7 @@ namespace Kelson_Orton_Application_Dev
             InitializeComponent();
             ID_TxtBx.ReadOnly = true;
 
-            // Attach event handlers
+            //event handlers
             Phone_Num_TxtBx.KeyPress += Phone_Num_TxtBx_KeyPress;
         }
 
@@ -37,15 +37,12 @@ namespace Kelson_Orton_Application_Dev
                 MessageBox.Show("Please fill in all required fields: Full Name," +
                     " Address, City, Country, and Phone Number.", "Missing Information",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Stop the save process if any field is empty
+                return;
             }
 
-            // If validation passes, attempt to save the customer
+            // If validation passes, save the customer
             if (SaveCustomer())
             {
-                // If SaveCustomer returns true, the customer was saved successfully
-                MessageBox.Show("Customer saved successfully!");
-
                 // Open the 'Main_Screen' form and close the current form
                 Main_Screen mainScreen = new Main_Screen();
                 mainScreen.Show();
@@ -73,7 +70,7 @@ namespace Kelson_Orton_Application_Dev
                 var country = Country_TxtBx.Text;
                 var city = City_TxtBx.Text;
                 var address = Address_TxtBx.Text;
-                var address2 = ""; // Set this to an appropriate value or leave empty if it's optional
+                var address2 = "";
                 var customer = Full_Name_TxtBx.Text;
                 var phone = Phone_Num_TxtBx.Text;
 
@@ -101,10 +98,10 @@ namespace Kelson_Orton_Application_Dev
                                        cityId, postalCode, phone, createDate,
                                        createdBy, lastUpdate, lastUpdateBy)
                                  VALUES (@address, @address2, @cityId, '', @phone,
-                                       NOW(), 'user', NOW(), 'user')"; // Assuming postalCode can be empty
+                                       NOW(), 'user', NOW(), 'user')";
                 MySqlCommand addressCommand = new MySqlCommand(insertAddress, Connection);
                 addressCommand.Parameters.AddWithValue("@address", address);
-                addressCommand.Parameters.AddWithValue("@address2", address2); // If this is optional, it can be an empty string
+                addressCommand.Parameters.AddWithValue("@address2", address2);
                 addressCommand.Parameters.AddWithValue("@cityId", cityId);
                 addressCommand.Parameters.AddWithValue("@phone", phone);
                 addressCommand.ExecuteNonQuery();
@@ -114,12 +111,12 @@ namespace Kelson_Orton_Application_Dev
                 string insertCustomer = @"INSERT INTO customer (customerName,
                                         addressId, active, createDate,
                                         createdBy, lastUpdate, lastUpdateBy) 
-                                  VALUES (@customerName, @addressId, 1, NOW(), 'user', NOW(), 'user')"; // Assuming the 'active' column is a boolean and the customer should be active
+                                  VALUES (@customerName, @addressId, 1, NOW(), 'user', NOW(), 'user')";
                 MySqlCommand customerCommand = new MySqlCommand(insertCustomer, Connection);
                 customerCommand.Parameters.AddWithValue("@customerName", customer);
                 customerCommand.Parameters.AddWithValue("@addressId", addressId);
                 customerCommand.ExecuteNonQuery();
-                // If Id need new customer's ID for something, uncomment the line below
+                // If Id need new customer's ID
                 // int customerId = (int)customerCommand.LastInsertedId;
 
                 MessageBox.Show("Customer saved successfully!");

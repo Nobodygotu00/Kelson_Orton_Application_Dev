@@ -12,7 +12,7 @@ namespace Kelson_Orton_Application_Dev
     {
         private ResourceManager resourceManager;
         private string connectionString = "server=localhost;port=3306;database=client_schedule;uid=root;pwd=Passw0rd!;";
-        private string logPath = @"C:\Users\kelso\Documents\WGU\Software_2_Advanced_C969\Kelson_Orton_Application_Dev"; // Updated path
+        private string logPath = @"C:\Users\kelso\Documents\WGU\Software_2_Advanced_C969\Kelson_Orton_Application_Dev";
 
         public Form1()
         {
@@ -52,7 +52,7 @@ namespace Kelson_Orton_Application_Dev
                     if (result != null)
                     {
                         LogToFile("Login successful for user: " + username);
-                        return Convert.ToInt32(result); // Return the userId
+                        return Convert.ToInt32(result);
                     }
                     LogToFile("Failed login attempt for user: " + username);
                 }
@@ -62,7 +62,7 @@ namespace Kelson_Orton_Application_Dev
                     LogToFile("Exception during login for user: " + username + " | Error: " + ex.Message);
                 }
             }
-            return -1; // Return -1 if credentials are incorrect or an error occurs
+            return -1;
         }
 
         private void LogToFile(string message)

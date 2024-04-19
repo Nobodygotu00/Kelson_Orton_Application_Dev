@@ -63,7 +63,7 @@ namespace Kelson_Orton_Application_Dev
             }
 
             if (End_Date_CB.Items.Count > 0)
-                End_Date_CB.SelectedIndex = 0; // Select the first available time
+                End_Date_CB.SelectedIndex = 0;
         }
 
         private DateTime GetSelectedStartTime()
@@ -104,7 +104,7 @@ namespace Kelson_Orton_Application_Dev
                 catch (Exception ex)
                 {
                     MessageBox.Show("Failed to check for overlapping appointments: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return true; // Assume overlap in case of error to prevent possible double booking
+                    return true;
                 }
             }
         }
@@ -114,7 +114,7 @@ namespace Kelson_Orton_Application_Dev
             if (Appointment_Overlap(date, startTime, endTime))
             {
                 MessageBox.Show("This appointment overlaps with another scheduled appointment. Please choose a different time.", "Appointment Overlap", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Stop the save operation if there is an overlap
+                return;
             }
 
             string connectionString = ConfigurationManager.ConnectionStrings["Localdb"].ConnectionString;
@@ -131,7 +131,7 @@ namespace Kelson_Orton_Application_Dev
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@customerId", this.customerId);
-                    command.Parameters.AddWithValue("@userId", 1);  // This should be dynamically assigned based on logged-in user
+                    command.Parameters.AddWithValue("@userId", 1);
                     command.Parameters.AddWithValue("@title", "New Appointment");
                     command.Parameters.AddWithValue("@description", "Description of the appointment");
                     command.Parameters.AddWithValue("@location", "Location of the appointment");
@@ -152,9 +152,10 @@ namespace Kelson_Orton_Application_Dev
                     MessageBox.Show("Failed to save the appointment: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            appointmentForm.RefreshAppointmentsData();
 
-            this.Close();  // Close the Add_Appointment form after saving successfully.
-            appointmentForm.Show();  // Show the Appointment form
+            this.Close();
+            appointmentForm.Show();
         }
 
         private void Add_Save_Button_Click(object sender, EventArgs e)
@@ -164,12 +165,13 @@ namespace Kelson_Orton_Application_Dev
             DateTime selectedEndTime = GetSelectedEndTime();
 
             Save_Appointment(selectedDate, selectedStartTime, selectedEndTime);
+
         }
 
         private void Add_Cancel_Button_Click(object sender, EventArgs e)
         {
-            this.Close();  // Close the Add_Appointment form
-            appointmentForm.Show();  // Show the Appointment form
+            this.Close();
+            appointmentForm.Show();
         }
     }
 }

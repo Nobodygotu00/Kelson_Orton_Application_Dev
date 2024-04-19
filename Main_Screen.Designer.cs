@@ -202,7 +202,7 @@
             this.Controls.Add(this.DaGrVi_Label);
             this.Controls.Add(this.Customer_DaGrVi);
             this.Name = "Main_Screen";
-            this.Text = "E";
+            this.Text = "Main Screen";
             this.Load += new System.EventHandler(this.Main_Screen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Customer_DaGrVi)).EndInit();
             this.ResumeLayout(false);

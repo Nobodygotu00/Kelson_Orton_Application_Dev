@@ -97,7 +97,7 @@ namespace Kelson_Orton_Application_Dev
             endTimeColumn.DefaultCellStyle.Format = "h:mm tt"; 
             dgv.Columns.Add(endTimeColumn);
 
-            dgv.Refresh(); // Refresh the DataGridView to show updated column configurations
+            dgv.Refresh(); // Refresh DataGridView
         }
 
         private void Load_Week_Appointments(int customerId)
@@ -142,7 +142,7 @@ namespace Kelson_Orton_Application_Dev
                     MessageBox.Show("Error loading week appointments: " + ex.Message);
                 }
             }
-            ConfigureDataGridView(Week_Apt_DGV); // Ensure the DataGridView is configured
+            ConfigureDataGridView(Week_Apt_DGV);
             Week_Apt_DGV.ClearSelection();
         }
 
@@ -200,7 +200,6 @@ namespace Kelson_Orton_Application_Dev
                 try
                 {
                     connection.Open();
-                    // Corrected query to include SQL-style comments
                     string query = @"
                 SELECT 
                     a.appointmentId AS `Appointment ID`, 
@@ -211,7 +210,7 @@ namespace Kelson_Orton_Application_Dev
                     a.start, 
                     a.end 
                 FROM appointment a  -- Use alias a for appointment table
-                JOIN customer c ON a.customerId = c.customerId"; // Use alias c for customer table
+                JOIN customer c ON a.customerId = c.customerId";
                     MySqlCommand command = new MySqlCommand(query, connection);
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
@@ -223,20 +222,19 @@ namespace Kelson_Orton_Application_Dev
                     MessageBox.Show("Error loading all appointments: " + ex.Message);
                 }
             }
-            ConfigureDataGridView(All_Apt_DGV); // Reconfigure DataGridView columns
+            ConfigureDataGridView(All_Apt_DGV);
             All_Apt_DGV.ClearSelection();
         }
 
         private void Cancel_Button_Click(object sender, EventArgs e)
         {
-            this.Close(); // Close the Appointment form
+            this.Close();
             mainScreen.Show();
         }
 
-        // Event handler for the FormClosed event
+
         private void Sch_App_Button_Click(object sender, EventArgs e)
         {
-            // Create a new instance of Add_Appointment, passing in the selectedCustomerId
             Add_Appointment addAppointmentForm = new Add_Appointment(this, selectedCustomerId);
             addAppointmentForm.Show();
             this.Hide();
@@ -252,7 +250,7 @@ namespace Kelson_Orton_Application_Dev
                 string endTime = Convert.ToString(selectedRow.Cells["end"].Value);
 
                 Update_Appointment updateForm = new Update_Appointment(appointmentId, this);
-                updateForm.SetDateTimeValues(startTime, endTime); // Method to set values
+                updateForm.SetDateTimeValues(startTime, endTime);
                 updateForm.Show();
                 this.Hide();
             }
@@ -380,7 +378,5 @@ namespace Kelson_Orton_Application_Dev
                 }
             }
         }
-        // Additional methods and event handlers for Appointment...
-
     }
 }
