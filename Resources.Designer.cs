@@ -61,20 +61,20 @@ namespace Kelson_Orton_Application_Dev {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        internal static string Login_Button {
+            get {
+                return ResourceManager.GetString("Login_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The username and password do not match..
         /// </summary>
         internal static string Login_Error {
             get {
                 return ResourceManager.GetString("Login_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Login.
-        /// </summary>
-        internal static string Login_Login_Button {
-            get {
-                return ResourceManager.GetString("Login_Login_Button", resourceCulture);
             }
         }
         

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Kelson_Orton_Application_Dev
 {
-    public partial class Schedule_Appointment_Add : Form
+    public partial class Main_Menu : Form
     {
-        public Schedule_Appointment_Add()
+        public Main_Menu()
         {
             InitializeComponent();
         }

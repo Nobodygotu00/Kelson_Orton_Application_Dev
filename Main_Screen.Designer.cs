@@ -28,95 +28,183 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Main_Screen_CuRec_Button = new System.Windows.Forms.Button();
-            this.Main_Screen_Sch_Button = new System.Windows.Forms.Button();
-            this.Main_Screen_Schedule_Button = new System.Windows.Forms.Button();
-            this.Main_Screen_Record_Button = new System.Windows.Forms.Button();
-            this.Main_Screen_Exit_Button = new System.Windows.Forms.Button();
-            this.Main_Screen_Schedule_Label = new System.Windows.Forms.Label();
-            this.Main_Screen_Customer_Rec_Label = new System.Windows.Forms.Label();
+            this.Customer_DaGrVi = new System.Windows.Forms.DataGridView();
+            this.DaGrVi_Label = new System.Windows.Forms.Label();
+            this.Add_Cu_Label = new System.Windows.Forms.Label();
+            this.Update_Cu_Label = new System.Windows.Forms.Label();
+            this.Delete_Cu_Label = new System.Windows.Forms.Label();
+            this.Appointment_Label = new System.Windows.Forms.Label();
+            this.Close_App_Label = new System.Windows.Forms.Label();
+            this.Add_Cu_Button = new System.Windows.Forms.Button();
+            this.Update_Cu_Button = new System.Windows.Forms.Button();
+            this.Delete_Cu_Button = new System.Windows.Forms.Button();
+            this.Appointment_Button = new System.Windows.Forms.Button();
+            this.Close_App_Button = new System.Windows.Forms.Button();
+            this.Report_Label = new System.Windows.Forms.Label();
+            this.Report_Button = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.Customer_DaGrVi)).BeginInit();
             this.SuspendLayout();
             // 
-            // Main_Screen_CuRec_Button
+            // Customer_DaGrVi
             // 
-            this.Main_Screen_CuRec_Button.Location = new System.Drawing.Point(85, 346);
-            this.Main_Screen_CuRec_Button.Name = "Main_Screen_CuRec_Button";
-            this.Main_Screen_CuRec_Button.Size = new System.Drawing.Size(75, 23);
-            this.Main_Screen_CuRec_Button.TabIndex = 0;
-            this.Main_Screen_CuRec_Button.Text = "Record";
-            this.Main_Screen_CuRec_Button.UseVisualStyleBackColor = true;
+            this.Customer_DaGrVi.AllowUserToAddRows = false;
+            this.Customer_DaGrVi.AllowUserToDeleteRows = false;
+            this.Customer_DaGrVi.AllowUserToResizeColumns = false;
+            this.Customer_DaGrVi.AllowUserToResizeRows = false;
+            this.Customer_DaGrVi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Customer_DaGrVi.Location = new System.Drawing.Point(42, 52);
+            this.Customer_DaGrVi.MultiSelect = false;
+            this.Customer_DaGrVi.Name = "Customer_DaGrVi";
+            this.Customer_DaGrVi.ReadOnly = true;
+            this.Customer_DaGrVi.Size = new System.Drawing.Size(537, 281);
+            this.Customer_DaGrVi.TabIndex = 0;
             // 
-            // Main_Screen_Sch_Button
+            // DaGrVi_Label
             // 
-            this.Main_Screen_Sch_Button.Location = new System.Drawing.Point(644, 346);
-            this.Main_Screen_Sch_Button.Name = "Main_Screen_Sch_Button";
-            this.Main_Screen_Sch_Button.Size = new System.Drawing.Size(75, 23);
-            this.Main_Screen_Sch_Button.TabIndex = 1;
-            this.Main_Screen_Sch_Button.Text = "Schedule";
-            this.Main_Screen_Sch_Button.UseVisualStyleBackColor = true;
+            this.DaGrVi_Label.AutoSize = true;
+            this.DaGrVi_Label.Location = new System.Drawing.Point(39, 36);
+            this.DaGrVi_Label.Name = "DaGrVi_Label";
+            this.DaGrVi_Label.Size = new System.Drawing.Size(72, 13);
+            this.DaGrVi_Label.TabIndex = 1;
+            this.DaGrVi_Label.Text = "Customer Info";
             // 
-            // Main_Screen_Schedule_Button
+            // Add_Cu_Label
             // 
-            this.Main_Screen_Schedule_Button.Location = new System.Drawing.Point(145, 42);
-            this.Main_Screen_Schedule_Button.Name = "Main_Screen_Schedule_Button";
-            this.Main_Screen_Schedule_Button.Size = new System.Drawing.Size(75, 23);
-            this.Main_Screen_Schedule_Button.TabIndex = 2;
-            this.Main_Screen_Schedule_Button.Text = "Schedule ";
-            this.Main_Screen_Schedule_Button.UseVisualStyleBackColor = true;
-            this.Main_Screen_Schedule_Button.Click += new System.EventHandler(this.Main_Screen_Schedule_Button_Click);
+            this.Add_Cu_Label.AutoSize = true;
+            this.Add_Cu_Label.Location = new System.Drawing.Point(629, 67);
+            this.Add_Cu_Label.Name = "Add_Cu_Label";
+            this.Add_Cu_Label.Size = new System.Drawing.Size(73, 13);
+            this.Add_Cu_Label.TabIndex = 2;
+            this.Add_Cu_Label.Text = "Add Customer";
             // 
-            // Main_Screen_Record_Button
+            // Update_Cu_Label
             // 
-            this.Main_Screen_Record_Button.Location = new System.Drawing.Point(145, 94);
-            this.Main_Screen_Record_Button.Name = "Main_Screen_Record_Button";
-            this.Main_Screen_Record_Button.Size = new System.Drawing.Size(75, 23);
-            this.Main_Screen_Record_Button.TabIndex = 3;
-            this.Main_Screen_Record_Button.Text = "Records";
-            this.Main_Screen_Record_Button.UseVisualStyleBackColor = true;
-            this.Main_Screen_Record_Button.Click += new System.EventHandler(this.Main_Screen_Record_Button_Click);
+            this.Update_Cu_Label.AutoSize = true;
+            this.Update_Cu_Label.Location = new System.Drawing.Point(629, 113);
+            this.Update_Cu_Label.Name = "Update_Cu_Label";
+            this.Update_Cu_Label.Size = new System.Drawing.Size(89, 13);
+            this.Update_Cu_Label.TabIndex = 3;
+            this.Update_Cu_Label.Text = "Update Customer";
             // 
-            // Main_Screen_Exit_Button
+            // Delete_Cu_Label
             // 
-            this.Main_Screen_Exit_Button.Location = new System.Drawing.Point(145, 150);
-            this.Main_Screen_Exit_Button.Name = "Main_Screen_Exit_Button";
-            this.Main_Screen_Exit_Button.Size = new System.Drawing.Size(75, 23);
-            this.Main_Screen_Exit_Button.TabIndex = 4;
-            this.Main_Screen_Exit_Button.Text = "Exit";
-            this.Main_Screen_Exit_Button.UseVisualStyleBackColor = true;
-            this.Main_Screen_Exit_Button.Click += new System.EventHandler(this.Main_Screen_Exit_Button_Click);
+            this.Delete_Cu_Label.AutoSize = true;
+            this.Delete_Cu_Label.Location = new System.Drawing.Point(629, 159);
+            this.Delete_Cu_Label.Name = "Delete_Cu_Label";
+            this.Delete_Cu_Label.Size = new System.Drawing.Size(38, 13);
+            this.Delete_Cu_Label.TabIndex = 4;
+            this.Delete_Cu_Label.Text = "Delete";
             // 
-            // Main_Screen_Schedule_Label
+            // Appointment_Label
             // 
-            this.Main_Screen_Schedule_Label.AutoSize = true;
-            this.Main_Screen_Schedule_Label.Location = new System.Drawing.Point(12, 47);
-            this.Main_Screen_Schedule_Label.Name = "Main_Screen_Schedule_Label";
-            this.Main_Screen_Schedule_Label.Size = new System.Drawing.Size(121, 13);
-            this.Main_Screen_Schedule_Label.TabIndex = 5;
-            this.Main_Screen_Schedule_Label.Text = "Schedule appointments:";
+            this.Appointment_Label.AutoSize = true;
+            this.Appointment_Label.Location = new System.Drawing.Point(629, 204);
+            this.Appointment_Label.Name = "Appointment_Label";
+            this.Appointment_Label.Size = new System.Drawing.Size(66, 13);
+            this.Appointment_Label.TabIndex = 5;
+            this.Appointment_Label.Text = "Appointment";
             // 
-            // Main_Screen_Customer_Rec_Label
+            // Close_App_Label
             // 
-            this.Main_Screen_Customer_Rec_Label.AutoSize = true;
-            this.Main_Screen_Customer_Rec_Label.Location = new System.Drawing.Point(12, 99);
-            this.Main_Screen_Customer_Rec_Label.Name = "Main_Screen_Customer_Rec_Label";
-            this.Main_Screen_Customer_Rec_Label.Size = new System.Drawing.Size(100, 13);
-            this.Main_Screen_Customer_Rec_Label.TabIndex = 6;
-            this.Main_Screen_Customer_Rec_Label.Text = "Customer Records: ";
+            this.Close_App_Label.AutoSize = true;
+            this.Close_App_Label.Location = new System.Drawing.Point(629, 294);
+            this.Close_App_Label.Name = "Close_App_Label";
+            this.Close_App_Label.Size = new System.Drawing.Size(88, 13);
+            this.Close_App_Label.TabIndex = 6;
+            this.Close_App_Label.Text = "Close Application";
+            // 
+            // Add_Cu_Button
+            // 
+            this.Add_Cu_Button.Location = new System.Drawing.Point(632, 83);
+            this.Add_Cu_Button.Name = "Add_Cu_Button";
+            this.Add_Cu_Button.Size = new System.Drawing.Size(75, 23);
+            this.Add_Cu_Button.TabIndex = 7;
+            this.Add_Cu_Button.Text = "Add";
+            this.Add_Cu_Button.UseVisualStyleBackColor = true;
+            this.Add_Cu_Button.Click += new System.EventHandler(this.Add_Cu_Button_Click);
+            // 
+            // Update_Cu_Button
+            // 
+            this.Update_Cu_Button.Location = new System.Drawing.Point(632, 129);
+            this.Update_Cu_Button.Name = "Update_Cu_Button";
+            this.Update_Cu_Button.Size = new System.Drawing.Size(75, 23);
+            this.Update_Cu_Button.TabIndex = 8;
+            this.Update_Cu_Button.Text = "Update";
+            this.Update_Cu_Button.UseVisualStyleBackColor = true;
+            this.Update_Cu_Button.Click += new System.EventHandler(this.Update_Cu_Button_Click);
+            // 
+            // Delete_Cu_Button
+            // 
+            this.Delete_Cu_Button.Location = new System.Drawing.Point(632, 175);
+            this.Delete_Cu_Button.Name = "Delete_Cu_Button";
+            this.Delete_Cu_Button.Size = new System.Drawing.Size(75, 23);
+            this.Delete_Cu_Button.TabIndex = 9;
+            this.Delete_Cu_Button.Text = "Delete";
+            this.Delete_Cu_Button.UseVisualStyleBackColor = true;
+            this.Delete_Cu_Button.Click += new System.EventHandler(this.Delete_Cu_Button_Click);
+            // 
+            // Appointment_Button
+            // 
+            this.Appointment_Button.Location = new System.Drawing.Point(632, 220);
+            this.Appointment_Button.Name = "Appointment_Button";
+            this.Appointment_Button.Size = new System.Drawing.Size(75, 23);
+            this.Appointment_Button.TabIndex = 10;
+            this.Appointment_Button.Text = "Set Up";
+            this.Appointment_Button.UseVisualStyleBackColor = true;
+            this.Appointment_Button.Click += new System.EventHandler(this.Appointment_Button_Click);
+            // 
+            // Close_App_Button
+            // 
+            this.Close_App_Button.Location = new System.Drawing.Point(632, 310);
+            this.Close_App_Button.Name = "Close_App_Button";
+            this.Close_App_Button.Size = new System.Drawing.Size(75, 23);
+            this.Close_App_Button.TabIndex = 11;
+            this.Close_App_Button.Text = "Close";
+            this.Close_App_Button.UseVisualStyleBackColor = true;
+            this.Close_App_Button.Click += new System.EventHandler(this.Close_App_Button_Click);
+            // 
+            // Report_Label
+            // 
+            this.Report_Label.AutoSize = true;
+            this.Report_Label.Location = new System.Drawing.Point(629, 249);
+            this.Report_Label.Name = "Report_Label";
+            this.Report_Label.Size = new System.Drawing.Size(44, 13);
+            this.Report_Label.TabIndex = 12;
+            this.Report_Label.Text = "Reports";
+            // 
+            // Report_Button
+            // 
+            this.Report_Button.Location = new System.Drawing.Point(632, 265);
+            this.Report_Button.Name = "Report_Button";
+            this.Report_Button.Size = new System.Drawing.Size(75, 23);
+            this.Report_Button.TabIndex = 13;
+            this.Report_Button.Text = "Report";
+            this.Report_Button.UseVisualStyleBackColor = true;
+            this.Report_Button.Click += new System.EventHandler(this.Report_Button_Click);
             // 
             // Main_Screen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(245, 191);
-            this.Controls.Add(this.Main_Screen_Customer_Rec_Label);
-            this.Controls.Add(this.Main_Screen_Schedule_Label);
-            this.Controls.Add(this.Main_Screen_Exit_Button);
-            this.Controls.Add(this.Main_Screen_Record_Button);
-            this.Controls.Add(this.Main_Screen_Schedule_Button);
-            this.Controls.Add(this.Main_Screen_Sch_Button);
-            this.Controls.Add(this.Main_Screen_CuRec_Button);
+            this.ClientSize = new System.Drawing.Size(747, 358);
+            this.Controls.Add(this.Report_Button);
+            this.Controls.Add(this.Report_Label);
+            this.Controls.Add(this.Close_App_Button);
+            this.Controls.Add(this.Appointment_Button);
+            this.Controls.Add(this.Delete_Cu_Button);
+            this.Controls.Add(this.Update_Cu_Button);
+            this.Controls.Add(this.Add_Cu_Button);
+            this.Controls.Add(this.Close_App_Label);
+            this.Controls.Add(this.Appointment_Label);
+            this.Controls.Add(this.Delete_Cu_Label);
+            this.Controls.Add(this.Update_Cu_Label);
+            this.Controls.Add(this.Add_Cu_Label);
+            this.Controls.Add(this.DaGrVi_Label);
+            this.Controls.Add(this.Customer_DaGrVi);
             this.Name = "Main_Screen";
-            this.Text = "Main_Screen";
+            this.Text = "E";
+            this.Load += new System.EventHandler(this.Main_Screen_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Customer_DaGrVi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,12 +212,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Button Main_Screen_CuRec_Button;
-        private System.Windows.Forms.Button Main_Screen_Sch_Button;
-        private System.Windows.Forms.Button Main_Screen_Schedule_Button;
-        private System.Windows.Forms.Button Main_Screen_Record_Button;
-        private System.Windows.Forms.Button Main_Screen_Exit_Button;
-        private System.Windows.Forms.Label Main_Screen_Schedule_Label;
-        private System.Windows.Forms.Label Main_Screen_Customer_Rec_Label;
+        private System.Windows.Forms.DataGridView Customer_DaGrVi;
+        private System.Windows.Forms.Label DaGrVi_Label;
+        private System.Windows.Forms.Label Add_Cu_Label;
+        private System.Windows.Forms.Label Update_Cu_Label;
+        private System.Windows.Forms.Label Delete_Cu_Label;
+        private System.Windows.Forms.Label Appointment_Label;
+        private System.Windows.Forms.Label Close_App_Label;
+        private System.Windows.Forms.Button Add_Cu_Button;
+        private System.Windows.Forms.Button Update_Cu_Button;
+        private System.Windows.Forms.Button Delete_Cu_Button;
+        private System.Windows.Forms.Button Appointment_Button;
+        private System.Windows.Forms.Button Close_App_Button;
+        private System.Windows.Forms.Label Report_Label;
+        private System.Windows.Forms.Button Report_Button;
     }
 }

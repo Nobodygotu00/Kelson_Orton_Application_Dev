@@ -89,24 +89,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer_Record.cs">
+    <Compile Include="Add_Appointmentcs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customer_Record.Designer.cs">
-      <DependentUpon>Customer_Record.cs</DependentUpon>
+    <Compile Include="Add_Appointmentcs.Designer.cs">
+      <DependentUpon>Add_Appointmentcs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customer_Record_Add.cs">
+    <Compile Include="Add_Customer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customer_Record_Add.Designer.cs">
-      <DependentUpon>Customer_Record_Add.cs</DependentUpon>
+    <Compile Include="Add_Customer.Designer.cs">
+      <DependentUpon>Add_Customer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customer_Record_Update.cs">
+    <Compile Include="Appointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customer_Record_Update.Designer.cs">
-      <DependentUpon>Customer_Record_Update.cs</DependentUpon>
+    <Compile Include="Appointment.Designer.cs">
+      <DependentUpon>Appointment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Customer_Add_Class.cs" />
+    <Compile Include="Customer_Data_Base.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,37 +123,37 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Schedule_Appointment.cs">
+    <Compile Include="Update_Appointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Schedule_Appointment.Designer.cs">
-      <DependentUpon>Schedule_Appointment.cs</DependentUpon>
+    <Compile Include="Update_Appointment.Designer.cs">
+      <DependentUpon>Update_Appointment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Schedule_Appointment_Add.cs">
+    <Compile Include="Update_Customer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Schedule_Appointment_Add.Designer.cs">
-      <DependentUpon>Schedule_Appointment_Add.cs</DependentUpon>
+    <Compile Include="Update_Customer.Designer.cs">
+      <DependentUpon>Update_Customer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Schedule_Appointment_Update.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Schedule_Appointment_Update.Designer.cs">
-      <DependentUpon>Schedule_Appointment_Update.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Customer_Record.resx">
-      <DependentUpon>Customer_Record.cs</DependentUpon>
+    <EmbeddedResource Include="Add_Appointmentcs.resx">
+      <DependentUpon>Add_Appointmentcs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer_Record_Add.resx">
-      <DependentUpon>Customer_Record_Add.cs</DependentUpon>
+    <EmbeddedResource Include="Add_Customer.resx">
+      <DependentUpon>Add_Customer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer_Record_Update.resx">
-      <DependentUpon>Customer_Record_Update.cs</DependentUpon>
+    <EmbeddedResource Include="Appointment.resx">
+      <DependentUpon>Appointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -168,19 +170,19 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources.de.resx" />
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Schedule_Appointment.resx">
-      <DependentUpon>Schedule_Appointment.cs</DependentUpon>
+    <EmbeddedResource Include="Update_Appointment.resx">
+      <DependentUpon>Update_Appointment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Schedule_Appointment_Add.resx">
-      <DependentUpon>Schedule_Appointment_Add.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Schedule_Appointment_Update.resx">
-      <DependentUpon>Schedule_Appointment_Update.cs</DependentUpon>
+    <EmbeddedResource Include="Update_Customer.resx">
+      <DependentUpon>Update_Customer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

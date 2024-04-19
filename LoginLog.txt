@@ -1,0 +1,8 @@
+4/18/2024 9:11:47 PM: Login successful for user: test
+4/18/2024 9:12:14 PM: Failed login attempt for user: test
+4/18/2024 9:12:23 PM: Failed login attempt for user: test
+4/18/2024 9:12:26 PM: Login successful for user: test
+4/18/2024 9:12:57 PM: Failed login attempt for user: newUser
+4/18/2024 9:13:04 PM: Login successful for user: newUser
+4/18/2024 9:13:14 PM: Failed login attempt for user: anotherUser
+4/18/2024 9:13:20 PM: Login successful for user: anotherUser

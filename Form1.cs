@@ -1,71 +1,121 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Globalization;
 using System.Resources;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-
-
+using System.IO;
 
 namespace Kelson_Orton_Application_Dev
 {
     public partial class Form1 : Form
     {
         private ResourceManager resourceManager;
-        private string connectionString = "server=your_server;database=your_database;uid=your_username;pwd=your_password;";
+        private string connectionString = "server=localhost;port=3306;database=client_schedule;uid=root;pwd=Passw0rd!;";
+        private string logPath = @"C:\Users\kelso\Documents\WGU\Software_2_Advanced_C969\Kelson_Orton_Application_Dev"; // Updated path
+
         public Form1()
         {
             InitializeComponent();
             resourceManager = new ResourceManager("Kelson_Orton_Application_Dev.Resources", typeof(Form1).Assembly);
-            
-            // Change from english to german
-            //CultureInfo.CurrentUICulture = new CultureInfo("de-DE");
+            EnsureDirectoryExists();
+        }
+
+        private void EnsureDirectoryExists()
+        {
+            if (!Directory.Exists(logPath))
+            {
+                Directory.CreateDirectory(logPath);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
             Login_Username_Label.Text = resourceManager.GetString("Login_Username_Label", CultureInfo.CurrentUICulture);
             Login_Password_Label.Text = resourceManager.GetString("Login_Password_Label", CultureInfo.CurrentUICulture);
-            Login_Login_Button.Text = resourceManager.GetString("Login_Login_Button", CultureInfo.CurrentUICulture);
+            Login_Button.Text = resourceManager.GetString("Login_Button", CultureInfo.CurrentUICulture);
         }
 
-        private void Login_Login_Button_Click(object sender, EventArgs e)
+        private int VerifyCredentials(string username, string password)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT userId FROM user WHERE userName = @username AND password = @password";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
+
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        LogToFile("Login successful for user: " + username);
+                        return Convert.ToInt32(result); // Return the userId
+                    }
+                    LogToFile("Failed login attempt for user: " + username);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred during login: " + ex.Message, "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LogToFile("Exception during login for user: " + username + " | Error: " + ex.Message);
+                }
+            }
+            return -1; // Return -1 if credentials are incorrect or an error occurs
+        }
+
+        private void LogToFile(string message)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(Path.Combine(logPath, "LoginLog.txt"), true))
+                {
+                    writer.WriteLine($"{DateTime.Now}: {message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to write to log file: " + ex.Message);
+            }
+        }
+
+        private void Login_Button_Click_1(object sender, EventArgs e)
         {
             string username = Login_Username_TxtBx.Text;
             string password = Login_Password_TxtBx.Text;
 
-            // Verify the credentials
-            if (VerifyCredentials(username, password))
+            int userId = VerifyCredentials(username, password);
+            if (userId > 0)
             {
-                // Credentials are correct, close Form1
                 this.Hide();
-
-                // Open Main_Screen
                 Main_Screen mainScreen = new Main_Screen();
                 mainScreen.Show();
             }
             else
             {
-                // Credentials are incorrect, show an error message
                 MessageBox.Show("Incorrect username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private bool VerifyCredentials(string username, string password)
+        private void Login_Username_Label_Click(object sender, EventArgs e)
         {
-            // undo comment bellow to compare login with username and password
-            // return username == "user" && password == "pass";
+            // Placeholder
+        }
 
-            // Remove return true; after undoing comment above
-            return true;
+        private void Login_Password_Label_Click(object sender, EventArgs e)
+        {
+            // Placeholder
+        }
 
+        private void Login_Username_TxtBx_TextChanged(object sender, EventArgs e)
+        {
+            // Placeholder
+        }
+
+        private void Login_Password_TxtBx_TextChanged(object sender, EventArgs e)
+        {
+            // Placeholder
         }
     }
 }
