@@ -12,7 +12,7 @@ namespace Kelson_Orton_Application_Dev
     {
         private ResourceManager resourceManager;
         private string connectionString = "server=localhost;port=3306;database=client_schedule;uid=root;pwd=Passw0rd!;";
-        private string logPath = @"C:\Users\kelso\Documents\WGU\Software_2_Advanced_C969\Kelson_Orton_Application_Dev";
+        private string logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Kelson_Orton_Application_Dev");
 
         public Form1()
         {
@@ -23,6 +23,8 @@ namespace Kelson_Orton_Application_Dev
 
         private void EnsureDirectoryExists()
         {
+            string logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Kelson_Orton_Application_Dev");
+
             if (!Directory.Exists(logPath))
             {
                 Directory.CreateDirectory(logPath);
