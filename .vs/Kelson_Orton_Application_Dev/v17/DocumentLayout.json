@@ -7,11 +7,19 @@
       "RelativeMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|c:\\users\\kelso\\documents\\wgu\\software_2_advanced_c969\\kelson_orton_application_dev\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|c:\\users\\kelso\\documents\\wgu\\software_2_advanced_c969\\kelson_orton_application_dev\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|c:\\users\\kelso\\documents\\wgu\\software_2_advanced_c969\\kelson_orton_application_dev\\resources.de.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|solutionrelative:resources.de.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|c:\\users\\kelso\\documents\\wgu\\software_2_advanced_c969\\kelson_orton_application_dev\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|solutionrelative:resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EED236B5-5DD5-48F2-A481-6B170E8F1F4A}|Kelson_Orton_Application_Dev.csproj|solutionrelative:appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -30,8 +38,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 8,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{131369f2-062d-44a2-8671-91ff31efb4f4}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -42,7 +62,31 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Resources.resx",
+              "DocumentMoniker": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\Resources.resx",
+              "RelativeDocumentMoniker": "Resources.resx",
+              "ToolTip": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\Resources.resx",
+              "RelativeToolTip": "Resources.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-04-23T22:27:27.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Resources.de.resx",
+              "DocumentMoniker": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\Resources.de.resx",
+              "RelativeDocumentMoniker": "Resources.de.resx",
+              "ToolTip": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\Resources.de.resx",
+              "RelativeToolTip": "Resources.de.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-04-23T21:56:06.346Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -52,7 +96,7 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\Form1.cs*",
               "RelativeToolTip": "Form1.cs*",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBwAAAANAAAA",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAABMAAABNAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-23T19:25:15.999Z",
               "EditorCaption": ""
@@ -71,20 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Appointment.cs",
-              "DocumentMoniker": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\Appointment.cs",
-              "RelativeDocumentMoniker": "Appointment.cs",
-              "ToolTip": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\Appointment.cs",
-              "RelativeToolTip": "Appointment.cs",
-              "ViewState": "AQIAAH4AAAAAAAAAAAAmwAgAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-19T04:06:48.117Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Appointment.cs [Design]",
               "DocumentMoniker": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\Appointment.cs",
               "RelativeDocumentMoniker": "Appointment.cs",
@@ -96,6 +127,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Appointment.cs",
+              "DocumentMoniker": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\Appointment.cs",
+              "RelativeDocumentMoniker": "Appointment.cs",
+              "ToolTip": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\Appointment.cs",
+              "RelativeToolTip": "Appointment.cs",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAmwAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-19T04:06:48.117Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\kelso\\Documents\\WGU\\Software_2_Advanced_C969\\Kelson_Orton_Application_Dev\\App.config",
               "RelativeDocumentMoniker": "App.config",

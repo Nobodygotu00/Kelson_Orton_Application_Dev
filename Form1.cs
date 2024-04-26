@@ -5,6 +5,7 @@ using System.Resources;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Threading;
 
 namespace Kelson_Orton_Application_Dev
 {
@@ -16,6 +17,18 @@ namespace Kelson_Orton_Application_Dev
 
         public Form1()
         {
+          
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de-DE");
+            CultureInfo currentCulture = CultureInfo.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = currentCulture;
+            if (currentCulture.TwoLetterISOLanguageName == "de")
+            {
+                resourceManager = new ResourceManager("Kelson_Orton_Application_Dev.Resources.de", typeof(Form1).Assembly);
+            }
+            else
+            {
+                resourceManager = new ResourceManager("Kelson_Orton_Application_Dev.Resources", typeof(Form1).Assembly);
+            }
             InitializeComponent();
             resourceManager = new ResourceManager("Kelson_Orton_Application_Dev.Resources", typeof(Form1).Assembly);
             EnsureDirectoryExists();
