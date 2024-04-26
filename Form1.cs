@@ -109,6 +109,13 @@ namespace Kelson_Orton_Application_Dev
             }
             else
             {
+                CultureInfo currentCulture = CultureInfo.CurrentUICulture;
+                if (currentCulture.TwoLetterISOLanguageName == "de")
+                {
+                    MessageBox.Show("Falscher Benutzername oder falsches Passwort.", "Anmeldung fehlgeschlagen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
                 MessageBox.Show("Incorrect username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
