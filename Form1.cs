@@ -17,7 +17,7 @@ namespace Kelson_Orton_Application_Dev
 
         public Form1()
         {
-          
+
             //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de-DE");
             CultureInfo currentCulture = CultureInfo.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = currentCulture;
@@ -116,26 +116,28 @@ namespace Kelson_Orton_Application_Dev
                 }
                 else
                 {
-                MessageBox.Show("Incorrect username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Incorrect username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
-        private void Login_Username_Label_Click(object sender, EventArgs e)
+        // Remove 'private' modifier from below event handler methods
+        void Login_Username_Label_Click(object sender, EventArgs e)
         {
             // Placeholder
         }
 
-        private void Login_Password_Label_Click(object sender, EventArgs e)
+        void Login_Password_Label_Click(object sender, EventArgs e)
         {
             // Placeholder
         }
 
-        private void Login_Username_TxtBx_TextChanged(object sender, EventArgs e)
+        void Login_Username_TxtBx_TextChanged(object sender, EventArgs e)
         {
             // Placeholder
         }
 
-        private void Login_Password_TxtBx_TextChanged(object sender, EventArgs e)
+        void Login_Password_TxtBx_TextChanged(object sender, EventArgs e)
         {
             // Placeholder
         }
