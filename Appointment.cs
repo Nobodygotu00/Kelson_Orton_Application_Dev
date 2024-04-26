@@ -84,7 +84,7 @@ namespace Kelson_Orton_Application_Dev
                 Name = "start",
                 DataPropertyName = "Start"
             };
-            startTimeColumn.DefaultCellStyle.Format = "h:mm tt"; 
+            startTimeColumn.DefaultCellStyle.Format = "h:mm tt";
             dgv.Columns.Add(startTimeColumn);
 
             // Format the End column to show only time
@@ -94,7 +94,7 @@ namespace Kelson_Orton_Application_Dev
                 Name = "end",
                 DataPropertyName = "End"
             };
-            endTimeColumn.DefaultCellStyle.Format = "h:mm tt"; 
+            endTimeColumn.DefaultCellStyle.Format = "h:mm tt";
             dgv.Columns.Add(endTimeColumn);
 
             dgv.Refresh(); // Refresh DataGridView

@@ -109,7 +109,7 @@ namespace Kelson_Orton_Application_Dev
             }
         }
 
-        private void Save_Appointment(DateTime date, DateTime startTime, DateTime endTime)
+        private void Save_Appointment(DateTime date, DateTime startTime, DateTime endTime, string appointmentType)
         {
             if (Appointment_Overlap(date, startTime, endTime))
             {
@@ -124,10 +124,10 @@ namespace Kelson_Orton_Application_Dev
                 {
                     connection.Open();
                     string query = @"
-                    INSERT INTO appointment 
-                    (customerId, userId, title, description, location, contact, type, url, createDate, start, end, createdBy, lastUpdate, lastUpdateBy)
-                    VALUES 
-                    (@customerId, @userId, @title, @description, @location, @contact, @type, @url, @createDate, @start, @end, @createdBy, NOW(), @lastUpdateBy);";
+            INSERT INTO appointment 
+            (customerId, userId, title, description, location, contact, type, url, createDate, start, end, createdBy, lastUpdate, lastUpdateBy)
+            VALUES 
+            (@customerId, @userId, @title, @description, @location, @contact, @type, @url, @createDate, @start, @end, @createdBy, NOW(), @lastUpdateBy);";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@customerId", this.customerId);
@@ -136,7 +136,7 @@ namespace Kelson_Orton_Application_Dev
                     command.Parameters.AddWithValue("@description", "Description of the appointment");
                     command.Parameters.AddWithValue("@location", "Location of the appointment");
                     command.Parameters.AddWithValue("@contact", "Contact details");
-                    command.Parameters.AddWithValue("@type", "Type of the appointment");
+                    command.Parameters.AddWithValue("@type", appointmentType); // Use the appointment type parameter
                     command.Parameters.AddWithValue("@url", "http://example.com");
                     command.Parameters.AddWithValue("@createDate", date);
                     command.Parameters.AddWithValue("@start", startTime);
@@ -160,12 +160,37 @@ namespace Kelson_Orton_Application_Dev
 
         private void Add_Save_Button_Click(object sender, EventArgs e)
         {
-            DateTime selectedDate = Start_Date_DTP.Value.Date;
+            DateTime selectedDate = DateTime.Now; 
             DateTime selectedStartTime = GetSelectedStartTime();
             DateTime selectedEndTime = GetSelectedEndTime();
 
-            Save_Appointment(selectedDate, selectedStartTime, selectedEndTime);
+            string appointmentType = GetSelectedAppointmentType();
 
+            Save_Appointment(selectedDate, selectedStartTime, selectedEndTime, appointmentType); // Update the method call
+        }
+
+        private string GetSelectedAppointmentType()
+        {
+            if (Lunch_Apt_RB.Checked)
+            {
+                return "Lunch";
+            }
+            else if (Interview_RB.Checked)
+            {
+                return "Interview";
+            }
+            else if (Meeting_RB.Checked)
+            {
+                return "Meeting";
+            }
+            else if (Group_Meet_RB.Checked)
+            {
+                return "Group Meeting";
+            }
+            else
+            {
+                return "Other"; // Handle default case if no radio button is checked
+            }
         }
 
         private void Add_Cancel_Button_Click(object sender, EventArgs e)
