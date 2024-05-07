@@ -6,12 +6,14 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Threading;
+using System.Configuration;
 
 namespace Kelson_Orton_Application_Dev
 {
     public partial class Form1 : Form
     {
         private ResourceManager resourceManager;
+        private CultureInfo currentCulture;
         private string connectionString = "server=localhost;port=3306;database=client_schedule;uid=root;pwd=Passw0rd!;";
         private string logPath = "LoginLogs";
         public int Logged_In_User_Id { get; set; }
@@ -35,6 +37,28 @@ namespace Kelson_Orton_Application_Dev
             EnsureDirectoryExists();
         }
 
+        private void AdjustAppointmentTimes()
+        {            
+            TimeZoneInfo userTimeZone = TimeZoneInfo.Local;
+        }
+
+        private void SetUserLocale()
+        {
+            
+            currentCulture = CultureInfo.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = currentCulture;
+
+            // Load the appropriate resource file based on the user's locale
+            if (currentCulture.Name == "de-DE")
+            {
+                resourceManager = new ResourceManager("Kelson_Orton_Application_Dev.Resources.de", typeof(Form1).Assembly);
+            }
+            else
+            {
+                resourceManager = new ResourceManager("Kelson_Orton_Application_Dev.Resources", typeof(Form1).Assembly);
+            }
+        }
+
         private void EnsureDirectoryExists()
         {
             if (!Directory.Exists(logPath))
@@ -45,6 +69,9 @@ namespace Kelson_Orton_Application_Dev
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            SetUserLocale();
+            AdjustAppointmentTimes();
+
             Login_Username_Label.Text = resourceManager.GetString("Login_Username_Label", CultureInfo.CurrentUICulture);
             Login_Password_Label.Text = resourceManager.GetString("Login_Password_Label", CultureInfo.CurrentUICulture);
             Login_Button.Text = resourceManager.GetString("Login_Button", CultureInfo.CurrentUICulture);
@@ -97,6 +124,35 @@ namespace Kelson_Orton_Application_Dev
             }
         }
 
+        public static void CheckForUpcomingAppointments(int userId)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["Localdb"].ConnectionString;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                DateTime now = DateTime.Now;
+                DateTime alertTime = now.AddMinutes(15);
+
+                string query = @"
+            SELECT COUNT(*) 
+            FROM appointment 
+            WHERE userId = @userId 
+            AND start BETWEEN @now AND @alertTime";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@userId", userId);
+                command.Parameters.AddWithValue("@now", now);
+                command.Parameters.AddWithValue("@alertTime", alertTime);
+
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                if (count > 0)
+                {
+                    MessageBox.Show("You have an appointment within the next 15 minutes.", "Upcoming Appointment Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+
         private void Login_Button_Click_1(object sender, EventArgs e)
         {
             string username = Login_Username_TxtBx.Text;
@@ -110,18 +166,17 @@ namespace Kelson_Orton_Application_Dev
                 Main_Screen mainScreen = new Main_Screen();
                 mainScreen.Show();
                 LogToFile($"Login successful for user: {username}");
+
+                
+                AdjustAppointmentTimes();
+
+                
+                Appointment.CheckForUpcomingAppointments(userId);
             }
             else
             {
-                CultureInfo currentCulture = CultureInfo.CurrentUICulture;
-                if (currentCulture.TwoLetterISOLanguageName == "de")
-                {
-                    MessageBox.Show("Falscher Benutzername oder falsches Passwort.", "Anmeldung fehlgeschlagen", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("Incorrect username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                string errorMessage = resourceManager.GetString("Login_Error_Message");
+                MessageBox.Show(errorMessage, resourceManager.GetString("Login_Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LogToFile($"Failed login attempt for user: {username}");
             }
         }

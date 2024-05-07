@@ -39,6 +39,34 @@ namespace Kelson_Orton_Application_Dev
             ConfigureDataGridView(Month_Apt_DGV);
         }
 
+        public static void CheckForUpcomingAppointments(int userId)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["Localdb"].ConnectionString;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                DateTime now = DateTime.Now;
+                DateTime alertTime = now.AddMinutes(15);
+
+                string query = @"
+                    SELECT COUNT(*) 
+                    FROM appointment 
+                    WHERE userId = @userId 
+                    AND start BETWEEN @now AND @alertTime";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@userId", userId);
+                command.Parameters.AddWithValue("@now", now);
+                command.Parameters.AddWithValue("@alertTime", alertTime);
+
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                if (count > 0)
+                {
+                    MessageBox.Show("You have an appointment within the next 15 minutes.", "Upcoming Appointment Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
         private void ConfigureDataGridView(DataGridView dgv)
         {
             dgv.AutoGenerateColumns = false;
@@ -307,25 +335,6 @@ namespace Kelson_Orton_Application_Dev
             }
         }
 
-        private void Up_All_Button_Click(object sender, EventArgs e)
-        {
-            if (All_Apt_DGV.SelectedRows.Count > 0)
-            {
-                OpenUpdateAppointmentForm(All_Apt_DGV);
-            }
-            else
-            {
-                MessageBox.Show("Please select an appointment to update.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void OpenUpdateAppointmentForm(DataGridView dgv)
-        {
-            int appointmentId = Convert.ToInt32(dgv.SelectedRows[0].Cells["appointmentId"].Value);
-            Update_Appointment updateForm = new Update_Appointment(appointmentId, logged_In_User_Id, this);
-            updateForm.Show();
-            this.Hide();
-        }
 
         private void Delete_Week_Button_Click(object sender, EventArgs e)
         {
@@ -365,7 +374,7 @@ namespace Kelson_Orton_Application_Dev
                             dgv.Rows.RemoveAt(dgv.SelectedRows[0].Index);
                             MessageBox.Show("Appointment deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // Refresh all DataGridViews
+                            
                             Load_Week_Appointments(selectedCustomerId);
                             Load_Month_Appointments(selectedCustomerId, DateTime.Now.Date);
                             LoadAllAppointments();
