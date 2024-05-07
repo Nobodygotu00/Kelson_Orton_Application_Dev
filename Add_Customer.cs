@@ -14,7 +14,7 @@ namespace Kelson_Orton_Application_Dev
             InitializeComponent();
             ID_TxtBx.ReadOnly = true;
 
-            //event handlers
+            
             Phone_Num_TxtBx.KeyPress += Phone_Num_TxtBx_KeyPress;
         }
 
@@ -27,7 +27,7 @@ namespace Kelson_Orton_Application_Dev
 
         private void Add_Cu_Save_Click(object sender, EventArgs e)
         {
-            // Validate input before saving
+           
             if (string.IsNullOrWhiteSpace(Full_Name_TxtBx.Text) ||
                 string.IsNullOrWhiteSpace(Address_TxtBx.Text) ||
                 string.IsNullOrWhiteSpace(City_TxtBx.Text) ||
@@ -40,17 +40,17 @@ namespace Kelson_Orton_Application_Dev
                 return;
             }
 
-            // If validation passes, save the customer
+           
             if (SaveCustomer())
             {
-                // Open the 'Main_Screen' form and close the current form
+              
                 Main_Screen mainScreen = new Main_Screen();
                 mainScreen.Show();
                 this.Close();
             }
             else
             {
-                // If SaveCustomer returns false, an error occurred
+                
                 MessageBox.Show("An error occurred while saving the customer.",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -66,7 +66,7 @@ namespace Kelson_Orton_Application_Dev
             {
                 Connection.Open();
 
-                // Get values from form fields
+              
                 var country = Country_TxtBx.Text;
                 var city = City_TxtBx.Text;
                 var address = Address_TxtBx.Text;
@@ -74,7 +74,7 @@ namespace Kelson_Orton_Application_Dev
                 var customer = Full_Name_TxtBx.Text;
                 var phone = Phone_Num_TxtBx.Text;
 
-                // Insert country
+              
                 string insertCountry = @"INSERT INTO Country (country, createDate,
                                        createdBy, lastUpdate, lastUpdateBy) 
                                  VALUES (@country, NOW(), 'user', NOW(), 'user')";
@@ -83,7 +83,7 @@ namespace Kelson_Orton_Application_Dev
                 countryCommand.ExecuteNonQuery();
                 int countryId = (int)countryCommand.LastInsertedId;
 
-                // Insert city
+             
                 string insertCity = @"INSERT INTO city (city, countryId,
                                     createDate, createdBy, lastUpdate, lastUpdateBy) 
                               VALUES (@city, @countryId, NOW(), 'user', NOW(), 'user')";
@@ -93,7 +93,7 @@ namespace Kelson_Orton_Application_Dev
                 cityCommand.ExecuteNonQuery();
                 int cityId = (int)cityCommand.LastInsertedId;
 
-                // Insert address
+               
                 string insertAddress = @"INSERT INTO address (address, address2,
                                        cityId, postalCode, phone, createDate,
                                        createdBy, lastUpdate, lastUpdateBy)
@@ -107,7 +107,7 @@ namespace Kelson_Orton_Application_Dev
                 addressCommand.ExecuteNonQuery();
                 int addressId = (int)addressCommand.LastInsertedId;
 
-                // Insert customer
+           
                 string insertCustomer = @"INSERT INTO customer (customerName,
                                         addressId, active, createDate,
                                         createdBy, lastUpdate, lastUpdateBy) 
@@ -116,8 +116,6 @@ namespace Kelson_Orton_Application_Dev
                 customerCommand.Parameters.AddWithValue("@customerName", customer);
                 customerCommand.Parameters.AddWithValue("@addressId", addressId);
                 customerCommand.ExecuteNonQuery();
-                // If Id need new customer's ID
-                // int customerId = (int)customerCommand.LastInsertedId;
 
                 MessageBox.Show("Customer saved successfully!");
                 success = true;
@@ -139,14 +137,14 @@ namespace Kelson_Orton_Application_Dev
 
         private void Phone_Num_TxtBx_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow only numbers and hyphen
+       
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '-')
             {
                 e.Handled = true;
             }
             else if (e.KeyChar == '-')
             {
-                // Allow only up to two hyphens
+       
                 int hyphenCount = (sender as TextBox).Text.Count(c => c == '-');
                 if (hyphenCount >= 2 || (sender as TextBox).Text.EndsWith("-"))
                 {
@@ -155,13 +153,13 @@ namespace Kelson_Orton_Application_Dev
             }
         }
 
-        private void Zip_Code_TxtBx_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allow only numbers
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
+     //   private void Zip_Code_TxtBx_KeyPress(object sender, KeyPressEventArgs e)
+     //   {
+     //    
+     //      if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+     //       {
+     //           e.Handled = true;
+     //       }
+     //   }
     }
 }

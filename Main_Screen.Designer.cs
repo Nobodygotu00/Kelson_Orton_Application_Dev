@@ -42,6 +42,8 @@
             this.Close_App_Button = new System.Windows.Forms.Button();
             this.Report_Label = new System.Windows.Forms.Label();
             this.Report_Button = new System.Windows.Forms.Button();
+            this.MS_User_ID_TxtBx = new System.Windows.Forms.TextBox();
+            this.User_ID_Label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Customer_DaGrVi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +54,7 @@
             this.Customer_DaGrVi.AllowUserToResizeColumns = false;
             this.Customer_DaGrVi.AllowUserToResizeRows = false;
             this.Customer_DaGrVi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Customer_DaGrVi.Location = new System.Drawing.Point(42, 52);
+            this.Customer_DaGrVi.Location = new System.Drawing.Point(12, 67);
             this.Customer_DaGrVi.MultiSelect = false;
             this.Customer_DaGrVi.Name = "Customer_DaGrVi";
             this.Customer_DaGrVi.ReadOnly = true;
@@ -62,11 +64,11 @@
             // DaGrVi_Label
             // 
             this.DaGrVi_Label.AutoSize = true;
-            this.DaGrVi_Label.Location = new System.Drawing.Point(39, 36);
+            this.DaGrVi_Label.Location = new System.Drawing.Point(9, 51);
             this.DaGrVi_Label.Name = "DaGrVi_Label";
-            this.DaGrVi_Label.Size = new System.Drawing.Size(72, 13);
+            this.DaGrVi_Label.Size = new System.Drawing.Size(106, 13);
             this.DaGrVi_Label.TabIndex = 1;
-            this.DaGrVi_Label.Text = "Customer Info";
+            this.DaGrVi_Label.Text = "Customer Information";
             // 
             // Add_Cu_Label
             // 
@@ -91,9 +93,9 @@
             this.Delete_Cu_Label.AutoSize = true;
             this.Delete_Cu_Label.Location = new System.Drawing.Point(629, 159);
             this.Delete_Cu_Label.Name = "Delete_Cu_Label";
-            this.Delete_Cu_Label.Size = new System.Drawing.Size(38, 13);
+            this.Delete_Cu_Label.Size = new System.Drawing.Size(85, 13);
             this.Delete_Cu_Label.TabIndex = 4;
-            this.Delete_Cu_Label.Text = "Delete";
+            this.Delete_Cu_Label.Text = "Delete Customer";
             // 
             // Appointment_Label
             // 
@@ -182,11 +184,30 @@
             this.Report_Button.UseVisualStyleBackColor = true;
             this.Report_Button.Click += new System.EventHandler(this.Report_Button_Click);
             // 
+            // MS_User_ID_TxtBx
+            // 
+            this.MS_User_ID_TxtBx.Location = new System.Drawing.Point(64, 6);
+            this.MS_User_ID_TxtBx.Name = "MS_User_ID_TxtBx";
+            this.MS_User_ID_TxtBx.ReadOnly = true;
+            this.MS_User_ID_TxtBx.Size = new System.Drawing.Size(100, 20);
+            this.MS_User_ID_TxtBx.TabIndex = 27;
+            // 
+            // User_ID_Label
+            // 
+            this.User_ID_Label.AutoSize = true;
+            this.User_ID_Label.Location = new System.Drawing.Point(12, 9);
+            this.User_ID_Label.Name = "User_ID_Label";
+            this.User_ID_Label.Size = new System.Drawing.Size(46, 13);
+            this.User_ID_Label.TabIndex = 26;
+            this.User_ID_Label.Text = "User ID:";
+            // 
             // Main_Screen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 358);
+            this.Controls.Add(this.MS_User_ID_TxtBx);
+            this.Controls.Add(this.User_ID_Label);
             this.Controls.Add(this.Report_Button);
             this.Controls.Add(this.Report_Label);
             this.Controls.Add(this.Close_App_Button);
@@ -226,5 +247,7 @@
         private System.Windows.Forms.Button Close_App_Button;
         private System.Windows.Forms.Label Report_Label;
         private System.Windows.Forms.Button Report_Button;
+        private System.Windows.Forms.TextBox MS_User_ID_TxtBx;
+        private System.Windows.Forms.Label User_ID_Label;
     }
 }

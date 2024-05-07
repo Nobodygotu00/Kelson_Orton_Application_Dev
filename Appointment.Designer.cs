@@ -50,6 +50,8 @@
             this.Week_Delete_Label = new System.Windows.Forms.Label();
             this.Up_Month_Button = new System.Windows.Forms.Button();
             this.Up_Month_Label = new System.Windows.Forms.Label();
+            this.User_ID_TxtBx = new System.Windows.Forms.TextBox();
+            this.User_ID_Label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Week_Apt_DGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.All_Apt_DGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Month_Apt_DGV)).BeginInit();
@@ -58,15 +60,15 @@
             // Name_Label
             // 
             this.Name_Label.AutoSize = true;
-            this.Name_Label.Location = new System.Drawing.Point(130, 9);
+            this.Name_Label.Location = new System.Drawing.Point(253, 9);
             this.Name_Label.Name = "Name_Label";
-            this.Name_Label.Size = new System.Drawing.Size(38, 13);
+            this.Name_Label.Size = new System.Drawing.Size(85, 13);
             this.Name_Label.TabIndex = 0;
-            this.Name_Label.Text = "Name:";
+            this.Name_Label.Text = "Customer Name:";
             // 
             // Name_TxtBx
             // 
-            this.Name_TxtBx.Location = new System.Drawing.Point(130, 25);
+            this.Name_TxtBx.Location = new System.Drawing.Point(253, 25);
             this.Name_TxtBx.Name = "Name_TxtBx";
             this.Name_TxtBx.ReadOnly = true;
             this.Name_TxtBx.Size = new System.Drawing.Size(100, 20);
@@ -75,7 +77,7 @@
             // Sche_App_Label
             // 
             this.Sche_App_Label.AutoSize = true;
-            this.Sche_App_Label.Location = new System.Drawing.Point(266, 9);
+            this.Sche_App_Label.Location = new System.Drawing.Point(502, 9);
             this.Sche_App_Label.Name = "Sche_App_Label";
             this.Sche_App_Label.Size = new System.Drawing.Size(114, 13);
             this.Sche_App_Label.TabIndex = 2;
@@ -83,7 +85,7 @@
             // 
             // Sch_App_Button
             // 
-            this.Sch_App_Button.Location = new System.Drawing.Point(269, 25);
+            this.Sch_App_Button.Location = new System.Drawing.Point(505, 25);
             this.Sch_App_Button.Name = "Sch_App_Button";
             this.Sch_App_Button.Size = new System.Drawing.Size(75, 23);
             this.Sch_App_Button.TabIndex = 3;
@@ -141,13 +143,13 @@
             this.Week_Apt_Label.AutoSize = true;
             this.Week_Apt_Label.Location = new System.Drawing.Point(12, 56);
             this.Week_Apt_Label.Name = "Week_Apt_Label";
-            this.Week_Apt_Label.Size = new System.Drawing.Size(97, 13);
+            this.Week_Apt_Label.Size = new System.Drawing.Size(106, 13);
             this.Week_Apt_Label.TabIndex = 10;
-            this.Week_Apt_Label.Text = "Week Apointments";
+            this.Week_Apt_Label.Text = "Week Appointments ";
             // 
             // ID_TxtBx
             // 
-            this.ID_TxtBx.Location = new System.Drawing.Point(12, 25);
+            this.ID_TxtBx.Location = new System.Drawing.Point(135, 25);
             this.ID_TxtBx.Name = "ID_TxtBx";
             this.ID_TxtBx.ReadOnly = true;
             this.ID_TxtBx.Size = new System.Drawing.Size(100, 20);
@@ -156,11 +158,11 @@
             // ID_Label
             // 
             this.ID_Label.AutoSize = true;
-            this.ID_Label.Location = new System.Drawing.Point(12, 9);
+            this.ID_Label.Location = new System.Drawing.Point(135, 9);
             this.ID_Label.Name = "ID_Label";
-            this.ID_Label.Size = new System.Drawing.Size(18, 13);
+            this.ID_Label.Size = new System.Drawing.Size(68, 13);
             this.ID_Label.TabIndex = 11;
-            this.ID_Label.Text = "ID";
+            this.ID_Label.Text = "Customer ID:";
             // 
             // All_Apt_DGV
             // 
@@ -169,22 +171,22 @@
             this.All_Apt_DGV.AllowUserToResizeColumns = false;
             this.All_Apt_DGV.AllowUserToResizeRows = false;
             this.All_Apt_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.All_Apt_DGV.Location = new System.Drawing.Point(12, 380);
+            this.All_Apt_DGV.Location = new System.Drawing.Point(12, 372);
             this.All_Apt_DGV.MultiSelect = false;
             this.All_Apt_DGV.Name = "All_Apt_DGV";
             this.All_Apt_DGV.ReadOnly = true;
             this.All_Apt_DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.All_Apt_DGV.Size = new System.Drawing.Size(720, 119);
+            this.All_Apt_DGV.Size = new System.Drawing.Size(720, 140);
             this.All_Apt_DGV.TabIndex = 13;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 364);
+            this.label1.Location = new System.Drawing.Point(12, 356);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 14;
-            this.label1.Text = "All Apointments";
+            this.label1.Text = "All Appointments ";
             // 
             // Cancel_Label
             // 
@@ -215,9 +217,9 @@
             this.Month_Label.AutoSize = true;
             this.Month_Label.Location = new System.Drawing.Point(9, 203);
             this.Month_Label.Name = "Month_Label";
-            this.Month_Label.Size = new System.Drawing.Size(98, 13);
+            this.Month_Label.Size = new System.Drawing.Size(107, 13);
             this.Month_Label.TabIndex = 17;
-            this.Month_Label.Text = "Month Apointments";
+            this.Month_Label.Text = "Month Appointments ";
             // 
             // Delete_Month_Button
             // 
@@ -276,11 +278,30 @@
             this.Up_Month_Label.TabIndex = 22;
             this.Up_Month_Label.Text = "Update Month Appointment";
             // 
+            // User_ID_TxtBx
+            // 
+            this.User_ID_TxtBx.Location = new System.Drawing.Point(12, 25);
+            this.User_ID_TxtBx.Name = "User_ID_TxtBx";
+            this.User_ID_TxtBx.ReadOnly = true;
+            this.User_ID_TxtBx.Size = new System.Drawing.Size(100, 20);
+            this.User_ID_TxtBx.TabIndex = 25;
+            // 
+            // User_ID_Label
+            // 
+            this.User_ID_Label.AutoSize = true;
+            this.User_ID_Label.Location = new System.Drawing.Point(12, 9);
+            this.User_ID_Label.Name = "User_ID_Label";
+            this.User_ID_Label.Size = new System.Drawing.Size(46, 13);
+            this.User_ID_Label.TabIndex = 24;
+            this.User_ID_Label.Text = "User ID:";
+            // 
             // Appointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 524);
+            this.Controls.Add(this.User_ID_TxtBx);
+            this.Controls.Add(this.User_ID_Label);
             this.Controls.Add(this.Up_Month_Button);
             this.Controls.Add(this.Up_Month_Label);
             this.Controls.Add(this.Delete_Week_Button);
@@ -337,5 +358,7 @@
         private System.Windows.Forms.Label Week_Delete_Label;
         private System.Windows.Forms.Button Up_Month_Button;
         private System.Windows.Forms.Label Up_Month_Label;
+        private System.Windows.Forms.TextBox User_ID_TxtBx;
+        private System.Windows.Forms.Label User_ID_Label;
     }
 }

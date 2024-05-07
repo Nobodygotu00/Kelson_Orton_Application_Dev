@@ -12,23 +12,29 @@ namespace Kelson_Orton_Application_Dev
         private Main_Screen mainScreen;
         private int selectedCustomerId;
         private string selectedCustomerName;
+        private int logged_In_User_Id;
 
         public DataGridView WeekAptDGV { get { return Week_Apt_DGV; } }
         public DataGridView MonthAptDGV { get { return Month_Apt_DGV; } }
         public DataGridView AllAptDGV { get { return All_Apt_DGV; } }
 
-        public Appointment(int selectedCustomerId, string selectedCustomerName, Main_Screen mainScreen)
+        public Appointment(int userId, int selectedCustomerId, string selectedCustomerName, Main_Screen mainScreen)
         {
             InitializeComponent();
+
             this.mainScreen = mainScreen;
             this.selectedCustomerId = selectedCustomerId;
             this.selectedCustomerName = selectedCustomerName;
+            this.logged_In_User_Id = userId;
 
             ID_TxtBx.Text = selectedCustomerId.ToString();
             Name_TxtBx.Text = selectedCustomerName;
+            User_ID_TxtBx.Text = userId.ToString();
 
-            Load_Week_Appointments(selectedCustomerId);
-            Load_Month_Appointments(selectedCustomerId);
+            DateTime currentDate = DateTime.Now.Date;
+
+            Load_Week_Appointments(selectedCustomerId, currentDate);
+            Load_Month_Appointments(selectedCustomerId, currentDate);
             LoadAllAppointments();
 
             ConfigureDataGridView(Week_Apt_DGV);
@@ -77,7 +83,7 @@ namespace Kelson_Orton_Application_Dev
             createDateColumn.DefaultCellStyle.Format = "MM/dd/yyyy";
             dgv.Columns.Add(createDateColumn);
 
-            // Format the Start column to show only time
+
             var startTimeColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Start Time",
@@ -87,7 +93,7 @@ namespace Kelson_Orton_Application_Dev
             startTimeColumn.DefaultCellStyle.Format = "h:mm tt";
             dgv.Columns.Add(startTimeColumn);
 
-            // Format the End column to show only time
+
             var endTimeColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "End Time",
@@ -97,10 +103,10 @@ namespace Kelson_Orton_Application_Dev
             endTimeColumn.DefaultCellStyle.Format = "h:mm tt";
             dgv.Columns.Add(endTimeColumn);
 
-            dgv.Refresh(); // Refresh DataGridView
+            dgv.Refresh();
         }
 
-        private void Load_Week_Appointments(int customerId)
+        private void Load_Week_Appointments(int customerId, DateTime selectedDate)
         {
             DataTable dataTable = new DataTable();
             string connectionString = ConfigurationManager.ConnectionStrings["Localdb"].ConnectionString;
@@ -109,8 +115,7 @@ namespace Kelson_Orton_Application_Dev
                 try
                 {
                     connection.Open();
-                    DateTime now = DateTime.Now;
-                    DateTime startOfWeek = now.AddDays(-(int)now.DayOfWeek);
+                    DateTime startOfWeek = selectedDate.AddDays(-(int)selectedDate.DayOfWeek);
                     DateTime endOfWeek = startOfWeek.AddDays(7);
 
                     string query = @"
@@ -125,13 +130,17 @@ namespace Kelson_Orton_Application_Dev
                 FROM appointment a
                 JOIN customer c ON a.customerId = c.customerId
                 WHERE a.customerId = @customerId 
-                AND a.start >= @startOfWeek 
-                AND a.start < @endOfWeek";
+                AND a.createDate >= @startOfWeek 
+                AND a.createDate < @endOfWeek
+                AND (a.createDate > @currentDate OR (a.createDate = @currentDate AND a.start >= @currentTime))
+                ORDER BY a.createDate, a.start";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@startOfWeek", startOfWeek);
                     command.Parameters.AddWithValue("@endOfWeek", endOfWeek);
                     command.Parameters.AddWithValue("@customerId", customerId);
+                    command.Parameters.AddWithValue("@currentDate", DateTime.Now.Date);
+                    command.Parameters.AddWithValue("@currentTime", DateTime.Now);
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                     adapter.Fill(dataTable);
@@ -146,7 +155,7 @@ namespace Kelson_Orton_Application_Dev
             Week_Apt_DGV.ClearSelection();
         }
 
-        private void Load_Month_Appointments(int customerId)
+        private void Load_Month_Appointments(int customerId, DateTime selectedDate)
         {
             DataTable dataTable = new DataTable();
             string connectionString = ConfigurationManager.ConnectionStrings["Localdb"].ConnectionString;
@@ -155,8 +164,7 @@ namespace Kelson_Orton_Application_Dev
                 try
                 {
                     connection.Open();
-                    DateTime now = DateTime.Now;
-                    DateTime startOfMonth = new DateTime(now.Year, now.Month, 1);
+                    DateTime startOfMonth = new DateTime(selectedDate.Year, selectedDate.Month, 1);
                     DateTime endOfMonth = startOfMonth.AddMonths(1);
 
                     string query = @"
@@ -171,13 +179,17 @@ namespace Kelson_Orton_Application_Dev
                 FROM appointment a
                 JOIN customer c ON a.customerId = c.customerId
                 WHERE a.customerId = @customerId 
-                AND a.start >= @startOfMonth 
-                AND a.start < @endOfMonth";
+                AND a.createDate >= @startOfMonth 
+                AND a.createDate < @endOfMonth
+                AND (a.createDate > @currentDate OR (a.createDate = @currentDate AND a.start >= @currentTime))
+                ORDER BY a.createDate, a.start";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@startOfMonth", startOfMonth);
                     command.Parameters.AddWithValue("@endOfMonth", endOfMonth);
                     command.Parameters.AddWithValue("@customerId", customerId);
+                    command.Parameters.AddWithValue("@currentDate", DateTime.Now.Date);
+                    command.Parameters.AddWithValue("@currentTime", DateTime.Now);
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                     adapter.Fill(dataTable);
@@ -209,9 +221,14 @@ namespace Kelson_Orton_Application_Dev
                     a.createDate AS `Create Date`, 
                     a.start, 
                     a.end 
-                FROM appointment a  -- Use alias a for appointment table
-                JOIN customer c ON a.customerId = c.customerId";
+                FROM appointment a
+                JOIN customer c ON a.customerId = c.customerId
+                WHERE (a.createDate > @currentDate OR (a.createDate = @currentDate AND a.start >= @currentTime))
+                ORDER BY a.createDate, a.start";
+
                     MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@currentDate", DateTime.Now.Date);
+                    command.Parameters.AddWithValue("@currentTime", DateTime.Now);
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                     adapter.Fill(dataTable);
@@ -235,7 +252,21 @@ namespace Kelson_Orton_Application_Dev
 
         private void Sch_App_Button_Click(object sender, EventArgs e)
         {
-            Add_Appointment addAppointmentForm = new Add_Appointment(this, selectedCustomerId);
+            DateTime selectedDate = DateTime.Now; 
+            if (Week_Apt_DGV.SelectedRows.Count > 0)
+            {
+                selectedDate = Convert.ToDateTime(Week_Apt_DGV.SelectedRows[0].Cells["createDate"].Value);
+            }
+            else if (Month_Apt_DGV.SelectedRows.Count > 0)
+            {
+                selectedDate = Convert.ToDateTime(Month_Apt_DGV.SelectedRows[0].Cells["createDate"].Value);
+            }
+            else if (All_Apt_DGV.SelectedRows.Count > 0)
+            {
+                selectedDate = Convert.ToDateTime(All_Apt_DGV.SelectedRows[0].Cells["createDate"].Value);
+            }
+
+            Add_Appointment addAppointmentForm = new Add_Appointment(logged_In_User_Id, selectedCustomerId, selectedDate, this);
             addAppointmentForm.Show();
             this.Hide();
         }
@@ -249,7 +280,7 @@ namespace Kelson_Orton_Application_Dev
                 string startTime = Convert.ToString(selectedRow.Cells["start"].Value);
                 string endTime = Convert.ToString(selectedRow.Cells["end"].Value);
 
-                Update_Appointment updateForm = new Update_Appointment(appointmentId, this);
+                Update_Appointment updateForm = new Update_Appointment(appointmentId, logged_In_User_Id, this);
                 updateForm.SetDateTimeValues(startTime, endTime);
                 updateForm.Show();
                 this.Hide();
@@ -269,7 +300,7 @@ namespace Kelson_Orton_Application_Dev
                 string startTime = Convert.ToString(selectedRow.Cells["start"].Value);
                 string endTime = Convert.ToString(selectedRow.Cells["end"].Value);
 
-                Update_Appointment updateForm = new Update_Appointment(appointmentId, this);
+                Update_Appointment updateForm = new Update_Appointment(appointmentId, logged_In_User_Id, this);
                 updateForm.SetDateTimeValues(startTime, endTime);
                 updateForm.Show();
                 this.Hide();
@@ -295,7 +326,7 @@ namespace Kelson_Orton_Application_Dev
         private void OpenUpdateAppointmentForm(DataGridView dgv)
         {
             int appointmentId = Convert.ToInt32(dgv.SelectedRows[0].Cells["appointmentId"].Value);
-            Update_Appointment updateForm = new Update_Appointment(appointmentId, this);
+            Update_Appointment updateForm = new Update_Appointment(appointmentId, logged_In_User_Id, this);
             updateForm.Show();
             this.Hide();
         }
@@ -310,10 +341,10 @@ namespace Kelson_Orton_Application_Dev
             Delete_Selected_Appointment(Month_Apt_DGV);
         }
 
-        public void RefreshAppointmentsData()
+        public void RefreshAppointmentsDataWithDate(DateTime selectedDate)
         {
-            Load_Week_Appointments(selectedCustomerId);
-            Load_Month_Appointments(selectedCustomerId);
+            Load_Week_Appointments(selectedCustomerId, selectedDate);
+            Load_Month_Appointments(selectedCustomerId, selectedDate);
             LoadAllAppointments();
         }
 

@@ -41,6 +41,9 @@
             this.End_Date_Label = new System.Windows.Forms.Label();
             this.Ud_End_Date_CB = new System.Windows.Forms.ComboBox();
             this.Ud_Start_Date_CB = new System.Windows.Forms.ComboBox();
+            this.Up_User_ID_TxtBx = new System.Windows.Forms.TextBox();
+            this.Up_User_ID_Label = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.Ud_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,9 +59,9 @@
             this.Start_Date_Label.AutoSize = true;
             this.Start_Date_Label.Location = new System.Drawing.Point(147, 9);
             this.Start_Date_Label.Name = "Start_Date_Label";
-            this.Start_Date_Label.Size = new System.Drawing.Size(58, 13);
+            this.Start_Date_Label.Size = new System.Drawing.Size(95, 13);
             this.Start_Date_Label.TabIndex = 39;
-            this.Start_Date_Label.Text = "Starting at:";
+            this.Start_Date_Label.Text = "Appointment Date:";
             // 
             // Ud_Meeting_RB
             // 
@@ -107,11 +110,11 @@
             // Type_Label
             // 
             this.Type_Label.AutoSize = true;
-            this.Type_Label.Location = new System.Drawing.Point(12, 9);
+            this.Type_Label.Location = new System.Drawing.Point(12, 51);
             this.Type_Label.Name = "Type_Label";
-            this.Type_Label.Size = new System.Drawing.Size(93, 13);
+            this.Type_Label.Size = new System.Drawing.Size(96, 13);
             this.Type_Label.TabIndex = 34;
-            this.Type_Label.Text = "Appointment Type";
+            this.Type_Label.Text = "Appointment Type:";
             // 
             // Update_Cancel_Button
             // 
@@ -139,9 +142,9 @@
             this.Ud_Panel.Controls.Add(this.Ud_Interview_RB);
             this.Ud_Panel.Controls.Add(this.Ud_Group_Meet_RB);
             this.Ud_Panel.Controls.Add(this.Ud_Lunch_Apt_RB);
-            this.Ud_Panel.Location = new System.Drawing.Point(12, 25);
+            this.Ud_Panel.Location = new System.Drawing.Point(12, 67);
             this.Ud_Panel.Name = "Ud_Panel";
-            this.Ud_Panel.Size = new System.Drawing.Size(93, 105);
+            this.Ud_Panel.Size = new System.Drawing.Size(100, 105);
             this.Ud_Panel.TabIndex = 43;
             // 
             // End_Date_Label
@@ -151,7 +154,7 @@
             this.End_Date_Label.Name = "End_Date_Label";
             this.End_Date_Label.Size = new System.Drawing.Size(55, 13);
             this.End_Date_Label.TabIndex = 40;
-            this.End_Date_Label.Text = "Ending at:";
+            this.End_Date_Label.Text = "End Time:";
             // 
             // Ud_End_Date_CB
             // 
@@ -164,17 +167,46 @@
             // Ud_Start_Date_CB
             // 
             this.Ud_Start_Date_CB.FormattingEnabled = true;
-            this.Ud_Start_Date_CB.Location = new System.Drawing.Point(150, 53);
+            this.Ud_Start_Date_CB.Location = new System.Drawing.Point(151, 69);
             this.Ud_Start_Date_CB.Name = "Ud_Start_Date_CB";
             this.Ud_Start_Date_CB.Size = new System.Drawing.Size(199, 21);
             this.Ud_Start_Date_CB.TabIndex = 44;
             this.Ud_Start_Date_CB.SelectedIndexChanged += new System.EventHandler(this.Ud_Start_Date_CB_SelectedIndexChanged);
+            // 
+            // Up_User_ID_TxtBx
+            // 
+            this.Up_User_ID_TxtBx.Location = new System.Drawing.Point(12, 25);
+            this.Up_User_ID_TxtBx.Name = "Up_User_ID_TxtBx";
+            this.Up_User_ID_TxtBx.ReadOnly = true;
+            this.Up_User_ID_TxtBx.Size = new System.Drawing.Size(100, 20);
+            this.Up_User_ID_TxtBx.TabIndex = 47;
+            // 
+            // Up_User_ID_Label
+            // 
+            this.Up_User_ID_Label.AutoSize = true;
+            this.Up_User_ID_Label.Location = new System.Drawing.Point(12, 9);
+            this.Up_User_ID_Label.Name = "Up_User_ID_Label";
+            this.Up_User_ID_Label.Size = new System.Drawing.Size(46, 13);
+            this.Up_User_ID_Label.TabIndex = 46;
+            this.Up_User_ID_Label.Text = "User ID:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(150, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Start Time:";
             // 
             // Update_Appointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 176);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Up_User_ID_TxtBx);
+            this.Controls.Add(this.Up_User_ID_Label);
             this.Controls.Add(this.Ud_End_Date_CB);
             this.Controls.Add(this.Ud_Start_Date_CB);
             this.Controls.Add(this.Ud_Panel);
@@ -207,5 +239,8 @@
         private System.Windows.Forms.Label End_Date_Label;
         private System.Windows.Forms.ComboBox Ud_End_Date_CB;
         private System.Windows.Forms.ComboBox Ud_Start_Date_CB;
+        private System.Windows.Forms.TextBox Up_User_ID_TxtBx;
+        private System.Windows.Forms.Label Up_User_ID_Label;
+        private System.Windows.Forms.Label label1;
     }
 }

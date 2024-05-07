@@ -49,45 +49,45 @@
             this.ID_Label.AutoSize = true;
             this.ID_Label.Location = new System.Drawing.Point(12, 9);
             this.ID_Label.Name = "ID_Label";
-            this.ID_Label.Size = new System.Drawing.Size(18, 13);
+            this.ID_Label.Size = new System.Drawing.Size(68, 13);
             this.ID_Label.TabIndex = 8;
-            this.ID_Label.Text = "ID";
+            this.ID_Label.Text = "Customer ID:";
             // 
             // Full_Name_Label
             // 
             this.Full_Name_Label.AutoSize = true;
             this.Full_Name_Label.Location = new System.Drawing.Point(12, 54);
             this.Full_Name_Label.Name = "Full_Name_Label";
-            this.Full_Name_Label.Size = new System.Drawing.Size(54, 13);
+            this.Full_Name_Label.Size = new System.Drawing.Size(57, 13);
             this.Full_Name_Label.TabIndex = 9;
-            this.Full_Name_Label.Text = "Full Name";
+            this.Full_Name_Label.Text = "Full Name:";
             // 
             // Address_Label
             // 
             this.Address_Label.AutoSize = true;
             this.Address_Label.Location = new System.Drawing.Point(12, 99);
             this.Address_Label.Name = "Address_Label";
-            this.Address_Label.Size = new System.Drawing.Size(45, 13);
+            this.Address_Label.Size = new System.Drawing.Size(48, 13);
             this.Address_Label.TabIndex = 10;
-            this.Address_Label.Text = "Address";
+            this.Address_Label.Text = "Address:";
             // 
             // Country_Label
             // 
             this.Country_Label.AutoSize = true;
             this.Country_Label.Location = new System.Drawing.Point(12, 189);
             this.Country_Label.Name = "Country_Label";
-            this.Country_Label.Size = new System.Drawing.Size(43, 13);
+            this.Country_Label.Size = new System.Drawing.Size(46, 13);
             this.Country_Label.TabIndex = 12;
-            this.Country_Label.Text = "Country";
+            this.Country_Label.Text = "Country:";
             // 
             // City_Label
             // 
             this.City_Label.AutoSize = true;
             this.City_Label.Location = new System.Drawing.Point(13, 144);
             this.City_Label.Name = "City_Label";
-            this.City_Label.Size = new System.Drawing.Size(24, 13);
+            this.City_Label.Size = new System.Drawing.Size(27, 13);
             this.City_Label.TabIndex = 11;
-            this.City_Label.Text = "City";
+            this.City_Label.Text = "City:";
             // 
             // ID_TxtBx
             // 
@@ -157,9 +157,9 @@
             this.Phone_Number_Label.AutoSize = true;
             this.Phone_Number_Label.Location = new System.Drawing.Point(9, 234);
             this.Phone_Number_Label.Name = "Phone_Number_Label";
-            this.Phone_Number_Label.Size = new System.Drawing.Size(78, 13);
+            this.Phone_Number_Label.Size = new System.Drawing.Size(81, 13);
             this.Phone_Number_Label.TabIndex = 13;
-            this.Phone_Number_Label.Text = "Phone Number";
+            this.Phone_Number_Label.Text = "Phone Number:";
             // 
             // Add_Customer
             // 

@@ -56,9 +56,9 @@
             this.UP_Phone_Number_Label.AutoSize = true;
             this.UP_Phone_Number_Label.Location = new System.Drawing.Point(9, 234);
             this.UP_Phone_Number_Label.Name = "UP_Phone_Number_Label";
-            this.UP_Phone_Number_Label.Size = new System.Drawing.Size(78, 13);
+            this.UP_Phone_Number_Label.Size = new System.Drawing.Size(81, 13);
             this.UP_Phone_Number_Label.TabIndex = 13;
-            this.UP_Phone_Number_Label.Text = "Phone Number";
+            this.UP_Phone_Number_Label.Text = "Phone Number:";
             // 
             // UP_Add_Cu_Cancel
             // 
@@ -121,45 +121,45 @@
             this.UP_Country_Label.AutoSize = true;
             this.UP_Country_Label.Location = new System.Drawing.Point(12, 189);
             this.UP_Country_Label.Name = "UP_Country_Label";
-            this.UP_Country_Label.Size = new System.Drawing.Size(43, 13);
+            this.UP_Country_Label.Size = new System.Drawing.Size(46, 13);
             this.UP_Country_Label.TabIndex = 12;
-            this.UP_Country_Label.Text = "Country";
+            this.UP_Country_Label.Text = "Country:";
             // 
             // UP_City_Label
             // 
             this.UP_City_Label.AutoSize = true;
             this.UP_City_Label.Location = new System.Drawing.Point(13, 144);
             this.UP_City_Label.Name = "UP_City_Label";
-            this.UP_City_Label.Size = new System.Drawing.Size(24, 13);
+            this.UP_City_Label.Size = new System.Drawing.Size(27, 13);
             this.UP_City_Label.TabIndex = 11;
-            this.UP_City_Label.Text = "City";
+            this.UP_City_Label.Text = "City:";
             // 
             // UP_Address_Label
             // 
             this.UP_Address_Label.AutoSize = true;
             this.UP_Address_Label.Location = new System.Drawing.Point(12, 99);
             this.UP_Address_Label.Name = "UP_Address_Label";
-            this.UP_Address_Label.Size = new System.Drawing.Size(45, 13);
+            this.UP_Address_Label.Size = new System.Drawing.Size(48, 13);
             this.UP_Address_Label.TabIndex = 10;
-            this.UP_Address_Label.Text = "Address";
+            this.UP_Address_Label.Text = "Address:";
             // 
             // UP_Full_Name_Label
             // 
             this.UP_Full_Name_Label.AutoSize = true;
             this.UP_Full_Name_Label.Location = new System.Drawing.Point(12, 54);
             this.UP_Full_Name_Label.Name = "UP_Full_Name_Label";
-            this.UP_Full_Name_Label.Size = new System.Drawing.Size(54, 13);
+            this.UP_Full_Name_Label.Size = new System.Drawing.Size(57, 13);
             this.UP_Full_Name_Label.TabIndex = 9;
-            this.UP_Full_Name_Label.Text = "Full Name";
+            this.UP_Full_Name_Label.Text = "Full Name:";
             // 
             // UP_ID_Label
             // 
             this.UP_ID_Label.AutoSize = true;
             this.UP_ID_Label.Location = new System.Drawing.Point(12, 9);
             this.UP_ID_Label.Name = "UP_ID_Label";
-            this.UP_ID_Label.Size = new System.Drawing.Size(18, 13);
+            this.UP_ID_Label.Size = new System.Drawing.Size(68, 13);
             this.UP_ID_Label.TabIndex = 8;
-            this.UP_ID_Label.Text = "ID";
+            this.UP_ID_Label.Text = "Customer ID:";
             // 
             // Update_Customer
             // 

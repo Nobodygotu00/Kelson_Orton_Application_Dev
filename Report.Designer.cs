@@ -91,9 +91,8 @@
             this.Report_Sched_Month_Label.AutoSize = true;
             this.Report_Sched_Month_Label.Location = new System.Drawing.Point(12, 140);
             this.Report_Sched_Month_Label.Name = "Report_Sched_Month_Label";
-            this.Report_Sched_Month_Label.Size = new System.Drawing.Size(222, 13);
+            this.Report_Sched_Month_Label.Size = new System.Drawing.Size(0, 13);
             this.Report_Sched_Month_Label.TabIndex = 4;
-            this.Report_Sched_Month_Label.Text = "Report 3: Customer Schedule (Current Month)";
             // 
             // Report_Num_Cu_Label
             // 
@@ -106,7 +105,7 @@
             // 
             // Return_Button
             // 
-            this.Return_Button.Location = new System.Drawing.Point(595, 346);
+            this.Return_Button.Location = new System.Drawing.Point(598, 348);
             this.Return_Button.Name = "Return_Button";
             this.Return_Button.Size = new System.Drawing.Size(75, 23);
             this.Return_Button.TabIndex = 7;
@@ -117,11 +116,11 @@
             // Return_Label
             // 
             this.Return_Label.AutoSize = true;
-            this.Return_Label.Location = new System.Drawing.Point(592, 330);
+            this.Return_Label.Location = new System.Drawing.Point(559, 330);
             this.Return_Label.Name = "Return_Label";
-            this.Return_Label.Size = new System.Drawing.Size(81, 13);
+            this.Return_Label.Size = new System.Drawing.Size(114, 13);
             this.Return_Label.TabIndex = 9;
-            this.Return_Label.Text = "Return to Menu";
+            this.Return_Label.Text = "Return to Main Screen";
             // 
             // Report
             // 

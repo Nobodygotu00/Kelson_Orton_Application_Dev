@@ -13,7 +13,8 @@ namespace Kelson_Orton_Application_Dev
     {
         private ResourceManager resourceManager;
         private string connectionString = "server=localhost;port=3306;database=client_schedule;uid=root;pwd=Passw0rd!;";
-        private string logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Kelson_Orton_Application_Dev");
+        private string logPath = "LoginLogs";
+        public int Logged_In_User_Id { get; set; }
 
         public Form1()
         {
@@ -36,8 +37,6 @@ namespace Kelson_Orton_Application_Dev
 
         private void EnsureDirectoryExists()
         {
-            string logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Kelson_Orton_Application_Dev");
-
             if (!Directory.Exists(logPath))
             {
                 Directory.CreateDirectory(logPath);
@@ -66,8 +65,9 @@ namespace Kelson_Orton_Application_Dev
                     object result = command.ExecuteScalar();
                     if (result != null)
                     {
+                        int userId = Convert.ToInt32(result);
                         LogToFile("Login successful for user: " + username);
-                        return Convert.ToInt32(result);
+                        return userId; 
                     }
                     LogToFile("Failed login attempt for user: " + username);
                 }
@@ -84,7 +84,9 @@ namespace Kelson_Orton_Application_Dev
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter(Path.Combine(logPath, "LoginLog.txt"), true))
+                string logFilePath = Path.Combine(logPath, "LoginLog.txt");
+
+                using (StreamWriter writer = new StreamWriter(logFilePath, true))
                 {
                     writer.WriteLine($"{DateTime.Now}: {message}");
                 }
@@ -104,8 +106,10 @@ namespace Kelson_Orton_Application_Dev
             if (userId > 0)
             {
                 this.Hide();
+                Logged_In_User_Id = userId;
                 Main_Screen mainScreen = new Main_Screen();
                 mainScreen.Show();
+                LogToFile($"Login successful for user: {username}");
             }
             else
             {
@@ -118,28 +122,29 @@ namespace Kelson_Orton_Application_Dev
                 {
                     MessageBox.Show("Incorrect username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                LogToFile($"Failed login attempt for user: {username}");
             }
         }
 
-        // Remove 'private' modifier from below event handler methods
+
         void Login_Username_Label_Click(object sender, EventArgs e)
         {
-            // Placeholder
+            
         }
 
         void Login_Password_Label_Click(object sender, EventArgs e)
         {
-            // Placeholder
+            
         }
 
         void Login_Username_TxtBx_TextChanged(object sender, EventArgs e)
         {
-            // Placeholder
+            
         }
 
         void Login_Password_TxtBx_TextChanged(object sender, EventArgs e)
         {
-            // Placeholder
+            
         }
     }
 }

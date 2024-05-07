@@ -12,17 +12,20 @@ namespace Kelson_Orton_Application_Dev
     {
         private int appointmentId;
         private Appointment appointmentForm;
+        private int loggedInUserId;
         private List<string> endTimes = new List<string> {
             "9:50 am", "10:50 am", "11:50 am", "12:50 pm",
             "1:50 pm", "2:50 pm", "3:50 pm", "4:50 pm"
         };
 
 
-        public Update_Appointment(int appointmentId, Appointment appointmentForm)
+        public Update_Appointment(int appointmentId, int loggedInUserId, Appointment appointmentForm)
         {
             InitializeComponent();
             this.appointmentId = appointmentId;
             this.appointmentForm = appointmentForm;
+            this.loggedInUserId = loggedInUserId;
+            Up_User_ID_TxtBx.Text = loggedInUserId.ToString();
 
             ConfigureDataGridView(appointmentForm.WeekAptDGV);
             ConfigureDataGridView(appointmentForm.MonthAptDGV);
@@ -157,6 +160,37 @@ namespace Kelson_Orton_Application_Dev
             }
         }
 
+        private bool Appointment_Overlap_Update(DateTime selectedDate, DateTime startTime, int appointmentId)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["Localdb"].ConnectionString;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = @"
+                SELECT COUNT(*) 
+                FROM appointment
+                WHERE createDate = @SelectedDate
+                AND start = @StartTime
+                AND appointmentId <> @AppointmentId";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@SelectedDate", selectedDate.Date);
+                    command.Parameters.AddWithValue("@StartTime", startTime);
+                    command.Parameters.AddWithValue("@AppointmentId", appointmentId);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to check for overlapping appointments: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return true;
+                }
+            }
+        }
+
         public void SetDateTimeValues(string startTime, string endTime)
         {
             DateTime startDateTime = DateTime.Parse(startTime);
@@ -168,6 +202,12 @@ namespace Kelson_Orton_Application_Dev
 
         private void Update_Save_Button_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(Ud_Start_Date_CB.Text) || string.IsNullOrEmpty(Ud_End_Date_CB.Text))
+            {
+                MessageBox.Show("Start and end times cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string[] formats = { "h:mm tt", "h tt" };
             DateTime startDateTime;
             DateTime endDateTime;
@@ -178,8 +218,7 @@ namespace Kelson_Orton_Application_Dev
             }
             catch (FormatException)
             {
-                MessageBox.Show($"Start time is not in the correct format: {Ud_Start_Date_CB.Text}. " +
-                    "Expected format is either 'h:mm tt' or 'h tt'.", "Invalid Start Time", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid format for start time. Expected format: 'h:mm tt' or 'h tt'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -189,15 +228,33 @@ namespace Kelson_Orton_Application_Dev
             }
             catch (FormatException)
             {
-                MessageBox.Show($"End time is not in the correct format: {Ud_End_Date_CB.Text}. " +
-                    "Expected format is either 'h:mm tt' or 'h tt'.", "Invalid End Time", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid format for end time. Expected format: 'h:mm tt' or 'h tt'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (endDateTime <= startDateTime)
+            {
+                MessageBox.Show("End time must be after start time.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DateTime createDate = Start_Date_DTP.Value;
+            DateTime currentDateTime = DateTime.Now;
+
+            if (createDate < currentDateTime.Date || (createDate == currentDateTime.Date && startDateTime < currentDateTime))
+            {
+                MessageBox.Show("Cannot update an appointment to a date and time older than the current date and time.", "Invalid Appointment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (Appointment_Overlap_Update(createDate, startDateTime, this.appointmentId))
+            {
+                MessageBox.Show("An appointment with the same date and start time already exists. Please choose a different date or time.", "Appointment Overlap", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             string appointmentType = Ud_Panel.Controls.OfType<RadioButton>()
                                           .FirstOrDefault(rb => rb.Checked)?.Text;
-
-            DateTime createDate = Start_Date_DTP.Value;
 
             string connectionString = ConfigurationManager.ConnectionStrings["Localdb"].ConnectionString;
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -225,7 +282,7 @@ namespace Kelson_Orton_Application_Dev
                 }
             }
 
-            appointmentForm.RefreshAppointmentsData();
+            appointmentForm.RefreshAppointmentsDataWithDate(Start_Date_DTP.Value.Date);
             this.Close();
             appointmentForm.Show();
         }

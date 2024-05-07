@@ -114,7 +114,6 @@ namespace Kelson_Orton_Application_Dev
                 }
             }
 
-            //clear the selection
             Report_Sched_Month_DGV.ClearSelection();
         }
 

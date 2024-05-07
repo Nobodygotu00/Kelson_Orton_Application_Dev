@@ -28,7 +28,7 @@ namespace Kelson_Orton_Application_Dev
         {
             if (Customer_DaGrVi.SelectedRows.Count > 0)
             {
-                int selectedCustomerId = Convert.ToInt32(Customer_DaGrVi.SelectedRows[0].Cells["ID"].Value); // Make sure "ID" matches your DataGridView's column name
+                int selectedCustomerId = Convert.ToInt32(Customer_DaGrVi.SelectedRows[0].Cells["ID"].Value); 
                 Update_Customer updateCustomerForm = new Update_Customer(selectedCustomerId);
                 updateCustomerForm.Show();
                 this.Hide();
@@ -53,12 +53,12 @@ namespace Kelson_Orton_Application_Dev
         {
             if (Customer_DaGrVi.SelectedRows.Count > 0)
             {
-                // Get the full name from the selected row
+
                 SelectedFullName = Customer_DaGrVi.SelectedRows[0].Cells["FullName"].Value.ToString();
             }
             else
             {
-                // If no row is selected, clear the SelectedFullName property
+
                 SelectedFullName = "";
             }
         }
@@ -71,13 +71,13 @@ namespace Kelson_Orton_Application_Dev
                 int selectedCustomerId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
                 string selectedCustomerName = Convert.ToString(selectedRow.Cells["FullName"].Value);
 
-                // Create the Appointment form instance and pass the selected customer information
-                Appointment appointmentForm = new Appointment(selectedCustomerId, selectedCustomerName, this);
+                Form1 loginForm = (Form1)Application.OpenForms["Form1"];
+                int logged_In_User_Id = loginForm.Logged_In_User_Id;
 
-                // Show the Appointment form
+                Appointment appointmentForm = new Appointment(logged_In_User_Id, selectedCustomerId, selectedCustomerName, this);
+
                 appointmentForm.Show();
 
-                // Hide the Main_Screen form
                 this.Hide();
             }
             else
@@ -128,25 +128,19 @@ namespace Kelson_Orton_Application_Dev
 
         private void Delete_Cu_Button_Click(object sender, EventArgs e)
         {
-            // Check if any row is selected
             if (Customer_DaGrVi.SelectedRows.Count > 0)
             {
-                // Confirm deletion
                 var confirmResult = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirmResult == DialogResult.Yes)
                 {
-                    // Get the selected row
                     DataGridViewRow selectedRow = Customer_DaGrVi.SelectedRows[0];
 
-                    // Extract the customer ID from the selected row
                     int customerId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
 
-                    // Perform the deletion in the database
                     bool deletionSuccessful = DeleteCustomer(customerId);
 
                     if (deletionSuccessful)
                     {
-                        // Remove the selected row from the DataGridView
                         Customer_DaGrVi.Rows.RemoveAt(selectedRow.Index);
 
                         MessageBox.Show("Customer deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -191,16 +185,12 @@ namespace Kelson_Orton_Application_Dev
 
         private void Report_Button_Click(object sender, EventArgs e)
         {
-            // Instantiate your Report form.
             Report reportForm = new Report();
 
-            // Show the Report form.
             reportForm.Show();
 
-            // Hide the Main_Screen form.
             this.Hide();
 
-            // Optionally, you can set an event to re-show the Main_Screen when the Report form is closed.
             reportForm.FormClosed += (s, args) => this.Show();
         }
     }
