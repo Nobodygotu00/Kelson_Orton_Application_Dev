@@ -31,10 +31,8 @@ namespace Kelson_Orton_Application_Dev
             Name_TxtBx.Text = selectedCustomerName;
             User_ID_TxtBx.Text = userId.ToString();
 
-            DateTime currentDate = DateTime.Now.Date;
-
-            Load_Week_Appointments(selectedCustomerId, currentDate);
-            Load_Month_Appointments(selectedCustomerId, currentDate);
+            Load_Week_Appointments(selectedCustomerId);
+            Load_Month_Appointments(selectedCustomerId, DateTime.Now.Date);
             LoadAllAppointments();
 
             ConfigureDataGridView(Week_Apt_DGV);
@@ -106,7 +104,7 @@ namespace Kelson_Orton_Application_Dev
             dgv.Refresh();
         }
 
-        private void Load_Week_Appointments(int customerId, DateTime selectedDate)
+        private void Load_Week_Appointments(int customerId)
         {
             DataTable dataTable = new DataTable();
             string connectionString = ConfigurationManager.ConnectionStrings["Localdb"].ConnectionString;
@@ -115,7 +113,8 @@ namespace Kelson_Orton_Application_Dev
                 try
                 {
                     connection.Open();
-                    DateTime startOfWeek = selectedDate.AddDays(-(int)selectedDate.DayOfWeek);
+                    DateTime currentDate = DateTime.Today;
+                    DateTime startOfWeek = currentDate.AddDays(-(int)currentDate.DayOfWeek);
                     DateTime endOfWeek = startOfWeek.AddDays(7);
 
                     string query = @"
@@ -130,17 +129,14 @@ namespace Kelson_Orton_Application_Dev
                 FROM appointment a
                 JOIN customer c ON a.customerId = c.customerId
                 WHERE a.customerId = @customerId 
-                AND a.createDate >= @startOfWeek 
-                AND a.createDate < @endOfWeek
-                AND (a.createDate > @currentDate OR (a.createDate = @currentDate AND a.start >= @currentTime))
-                ORDER BY a.createDate, a.start";
+                AND a.start >= @startOfWeek 
+                AND a.start < @endOfWeek
+                ORDER BY a.start";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@startOfWeek", startOfWeek);
                     command.Parameters.AddWithValue("@endOfWeek", endOfWeek);
                     command.Parameters.AddWithValue("@customerId", customerId);
-                    command.Parameters.AddWithValue("@currentDate", DateTime.Now.Date);
-                    command.Parameters.AddWithValue("@currentTime", DateTime.Now);
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                     adapter.Fill(dataTable);
@@ -343,7 +339,7 @@ namespace Kelson_Orton_Application_Dev
 
         public void RefreshAppointmentsDataWithDate(DateTime selectedDate)
         {
-            Load_Week_Appointments(selectedCustomerId, selectedDate);
+            Load_Week_Appointments(selectedCustomerId);
             Load_Month_Appointments(selectedCustomerId, selectedDate);
             LoadAllAppointments();
         }
@@ -368,6 +364,11 @@ namespace Kelson_Orton_Application_Dev
                             command.ExecuteNonQuery();
                             dgv.Rows.RemoveAt(dgv.SelectedRows[0].Index);
                             MessageBox.Show("Appointment deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Refresh all DataGridViews
+                            Load_Week_Appointments(selectedCustomerId);
+                            Load_Month_Appointments(selectedCustomerId, DateTime.Now.Date);
+                            LoadAllAppointments();
                         }
                         catch (Exception ex)
                         {
@@ -382,32 +383,5 @@ namespace Kelson_Orton_Application_Dev
             }
         }
 
-        public static void CheckForUpcomingAppointments(int userId)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["Localdb"].ConnectionString;
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                DateTime now = DateTime.Now;
-                DateTime alertTime = now.AddMinutes(15);
-
-                string query = @"
-                    SELECT COUNT(*) 
-                    FROM appointment 
-                    WHERE userId = @userId 
-                    AND start BETWEEN @now AND @alertTime";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@userId", userId);
-                command.Parameters.AddWithValue("@now", now);
-                command.Parameters.AddWithValue("@alertTime", alertTime);
-
-                int count = Convert.ToInt32(command.ExecuteScalar());
-                if (count > 0)
-                {
-                    MessageBox.Show("You have an appointment within the next 15 minutes.", "Upcoming Appointment Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
     }
 }
